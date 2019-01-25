@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.e("dsds","${"123"}")
-
         array.setOnClickListener {
             EasyArrayUtils.rotate(intArrayOf(1,2,3,4,5,6,7),1)
 //            EasyArrayUtils.intersect(intArrayOf(1,2),intArrayOf(1,1))
@@ -47,7 +45,8 @@ class MainActivity : AppCompatActivity() {
             listNode.next = ListNode(2)
             listNode.next.next = ListNode(3)
             listNode.next.next.next = ListNode(4)
-            EasyLinkedListUtils.removeNthFromEnd(listNode,2)
+            listNode.next.next.next.next = ListNode(5)
+            EasyLinkedListUtils.reverseList(listNode)
         }
     }
 }

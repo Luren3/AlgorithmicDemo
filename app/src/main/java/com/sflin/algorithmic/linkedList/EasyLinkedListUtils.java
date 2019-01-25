@@ -67,4 +67,49 @@ public class EasyLinkedListUtils {
         }
         return head;
     }
+
+    /**
+     * 反转链表
+     *
+     * @param head
+     * @return
+     *
+     * 示例
+     * 输入: 1->2->3->4->5->NULL
+     * 输出: 5->4->3->2->1->NULL
+     */
+    public static ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null) {
+            return head;
+        }
+        ListNode pre = null, now = head;
+        while (now != null) {
+            ListNode next = now.next;
+            now.next = pre;
+            pre = now;
+            now = next;
+        }
+        return pre;
+    }
+//    public static ListNode reverseList(ListNode head) {
+//        if (head == null || head.next == null) return head;
+//        List<Integer> list = new ArrayList<>();
+//        list.add(head.val);
+//        while (head.next != null){
+//            list.add(head.next.val);
+//            head = head.next;
+//        }
+//        ListNode newNode = null;
+//        ListNode temp = null;
+//        for (int i = list.size() - 1;i>=0;i--){
+//            if (newNode == null){
+//                newNode = new ListNode(list.get(i));
+//                temp = newNode;
+//            }else {
+//                temp.next = new ListNode(list.get(i));
+//                temp = temp.next;
+//            }
+//        }
+//        return newNode;
+//    }
 }

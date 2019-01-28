@@ -177,4 +177,60 @@ public class EasyLinkedListUtils {
 //        }
 //        return newNode;
 //    }
+
+    /**
+     * 回文链表
+     * @param head
+     * @return
+     *
+     * 示例
+     * 输入: 1->2->2->1
+     * 输出: true
+     */
+    public static boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        if (head.next.next == null) {
+            return head.val == head.next.val;
+        }
+
+        ListNode fast = head.next;
+        ListNode slow = head;
+
+        while (fast.next != null) {
+            // 不停的从slow的后一个开始遍历，知道找到值相同的节点
+            // 一次完成后，再移动到原节点的下一个节点开始，继续重复上面的步骤
+            if (fast.next.val == slow.val) {
+                if (fast.next.next != null) {
+                    return false;
+                }
+                fast.next = null;
+                slow = slow.next;
+                fast = slow.next;
+                if (fast == null || fast.val == slow.val) {
+                    return true;
+                }
+            } else {
+                fast = fast.next;
+            }
+        }
+        return false;
+    }
+//    public static boolean isPalindrome(ListNode head) {
+//        List<Integer> list = new ArrayList<>();
+//        while (head != null){
+//            list.add(head.val);
+//            head = head.next;
+//        }
+//        for (int i = 0;i < list.size() / 2;i ++){
+//            int num1 = list.get(i);
+//            int num2 = list.get(list.size() - 1 - i);
+//            if (num1 != num2){
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 }

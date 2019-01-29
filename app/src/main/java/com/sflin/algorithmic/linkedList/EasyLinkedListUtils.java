@@ -233,4 +233,29 @@ public class EasyLinkedListUtils {
 //        }
 //        return true;
 //    }
+
+    /**
+     * 环形链表
+     *
+     * @param head
+     * @return
+     *
+     * 示例
+     * 输入：head = [3,2,0,-4], pos = 1
+     * 输出：true
+     * 解释：链表中有一个环，其尾部连接到第二个节点。
+     */
+    public static boolean hasCycle(ListNode head) {
+        if (head == null || head.next == null) return false;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (slow != fast) {
+            if (fast == null || fast.next == null) {
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return true;
+    }
 }

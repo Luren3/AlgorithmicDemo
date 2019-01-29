@@ -41,15 +41,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         linkedList.setOnClickListener {
-            val listNode = ListNode(-129)
-            listNode.next = ListNode(-129)
-//            listNode.next.next = ListNode(4)
+            val listNode = ListNode(3)
+            listNode.next = ListNode(2)
+            listNode.next.next = ListNode(0)
+            listNode.next.next.next = ListNode(-4)
 //
 //            val listNode2 = ListNode(1)
 //            listNode2.next = ListNode(3)
 //            listNode2.next.next = ListNode(5)
 //            EasyLinkedListUtils.mergeTwoLists(listNode,listNode2)
-            EasyLinkedListUtils.isPalindrome(listNode)
+            EasyLinkedListUtils.hasCycle(listNode)
         }
     }
 }

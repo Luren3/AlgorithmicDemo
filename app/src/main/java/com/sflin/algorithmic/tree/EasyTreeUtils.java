@@ -22,7 +22,7 @@ public class EasyTreeUtils {
      *    15   7
      * 返回它的最大深度 3 。
      */
-    public int maxDepth(TreeNode root) {
+    public static int maxDepth(TreeNode root) {
         if (root == null) return 0;
         return Math.max(maxDepth(root.left),maxDepth(root.right)) + 1;
     }

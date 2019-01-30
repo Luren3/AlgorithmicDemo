@@ -7,6 +7,8 @@ import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.string.EasyStringUtils
+import com.sflin.algorithmic.tree.EasyTreeUtils
+import com.sflin.algorithmic.tree.TreeNode
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +53,11 @@ class MainActivity : AppCompatActivity() {
 //            listNode2.next.next = ListNode(5)
 //            EasyLinkedListUtils.mergeTwoLists(listNode,listNode2)
             EasyLinkedListUtils.hasCycle(listNode)
+        }
+
+        tree.setOnClickListener {
+            val root = TreeNode(1)
+            EasyTreeUtils.maxDepth(root)
         }
     }
 }

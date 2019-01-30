@@ -1,8 +1,8 @@
 package com.sflin.algorithmic.linkedList;
 
 /**
- * Created by SFLin
- * <p>
+ * Created by MagicFrost
+ *
  * 初级链表算法
  */
 public class EasyLinkedListUtils {

@@ -3,7 +3,7 @@ package com.sflin.algorithmic.string;
 import java.util.*;
 
 /**
- * Created SFLin.
+ * Created MagicFrost.
  *
  * 初级字符串算法
  */

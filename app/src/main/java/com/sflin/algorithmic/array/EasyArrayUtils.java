@@ -3,7 +3,7 @@ package com.sflin.algorithmic.array;
 import java.util.*;
 
 /**
- * Created by SFLin
+ * Created by MagicFrost
  *
  * 初级数组算法
  */

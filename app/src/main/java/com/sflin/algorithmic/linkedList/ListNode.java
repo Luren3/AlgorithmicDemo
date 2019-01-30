@@ -1,7 +1,9 @@
 package com.sflin.algorithmic.linkedList;
 
 /**
- * Copyright SFLin
+ * Copyright MagicFrost
+ *
+ * 链表结构类
  */
 public class ListNode {
 

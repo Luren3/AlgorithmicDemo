@@ -56,8 +56,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         tree.setOnClickListener {
-            val root = TreeNode(1)
-            EasyTreeUtils.maxDepth(root)
+            val root = TreeNode(10)
+            root.left = TreeNode(5)
+            root.right = TreeNode(15).apply {
+                left = TreeNode(6)
+                right = TreeNode(20)
+            }
+            val result = EasyTreeUtils.isValidBST(root)
+            Log.e("dsds","${result}")
         }
     }
 }

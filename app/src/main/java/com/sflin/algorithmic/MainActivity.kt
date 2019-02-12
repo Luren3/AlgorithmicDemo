@@ -56,13 +56,28 @@ class MainActivity : AppCompatActivity() {
         }
 
         tree.setOnClickListener {
-            val root = TreeNode(10)
-            root.left = TreeNode(5)
-            root.right = TreeNode(15).apply {
-                left = TreeNode(6)
-                right = TreeNode(20)
+            val root = TreeNode(1)
+            root.left = TreeNode(2).apply {
+                left = TreeNode(3).apply {
+                    left = TreeNode(5)
+                    right = TreeNode(6)
+                }
+                right = TreeNode(4).apply {
+                    left = TreeNode(7)
+                    right = TreeNode(8)
+                }
             }
-            val result = EasyTreeUtils.isValidBST(root)
+            root.right = TreeNode(2).apply {
+                left = TreeNode(4).apply {
+                    left = TreeNode(8)
+                    right = TreeNode(7)
+                }
+                right = TreeNode(3).apply {
+                    left = TreeNode(6)
+                    right = TreeNode(5)
+                }
+            }
+            val result = EasyTreeUtils.isSymmetric(root)
             Log.e("dsds","${result}")
         }
     }

@@ -77,8 +77,8 @@ class MainActivity : AppCompatActivity() {
                     right = TreeNode(5)
                 }
             }
-            val result = EasyTreeUtils.isSymmetric(root)
-            Log.e("dsds","${result}")
+            EasyTreeUtils.levelOrder(root)
+//            Log.e("dsds","${result}")
         }
     }
 }

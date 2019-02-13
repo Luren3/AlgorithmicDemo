@@ -1,5 +1,10 @@
 package com.sflin.algorithmic.tree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * Created by MagicFrost
  * <p>
@@ -123,4 +128,50 @@ public class EasyTreeUtils {
 //        }
 //        return true;
 //    }
+
+    /**
+     * 二叉树的层次遍历
+     *
+     * @param root
+     * @return
+     *
+     * 示例
+     * 给定二叉树: [3,9,20,null,null,15,7]
+     *     3
+     *    / \
+     *   9  20
+     *     /  \
+     *    15   7
+     * 返回其层次遍历结果：
+     * [
+     *   [3],
+     *   [9,20],
+     *   [15,7]
+     * ]
+     */
+    public static List<List<Integer>> levelOrder(TreeNode root) {
+
+        List<List<Integer>> lists = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()){
+            int size = queue.size();
+            List<Integer> list = new ArrayList<>();
+
+            for (int i = 0;i < size;i ++){
+                TreeNode node = queue.poll();
+                if (node != null) {
+                    list.add(node.val);
+                    queue.add(node.left);
+                    queue.add(node.right);
+                }
+            }
+            if (list.size() != 0){
+                lists.add(list);
+            }
+        }
+
+        return lists;
+    }
 }

@@ -1,9 +1,6 @@
 package com.sflin.algorithmic.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by MagicFrost
@@ -173,5 +170,34 @@ public class EasyTreeUtils {
         }
 
         return lists;
+    }
+
+    /**
+     * 将有序数组转换为二叉搜索树
+     *
+     * @param nums
+     * @return
+     *
+     * 示例
+     * 给定有序数组: [-10,-3,0,5,9],
+     *
+     * 一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：
+     *
+     *       0
+     *      / \
+     *    -3   9
+     *    /   /
+     *  -10  5
+     */
+    public static TreeNode sortedArrayToBST(int[] nums) {
+        return sortedArrayToBST(nums,0,nums.length - 1);
+    }
+    private static TreeNode sortedArrayToBST(int[] nums,int left,int right){
+        if (left > right) return null;
+        int mid = (left + right) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = sortedArrayToBST(nums,left,mid - 1);
+        node.right = sortedArrayToBST(nums,mid+1,right);
+        return node;
     }
 }

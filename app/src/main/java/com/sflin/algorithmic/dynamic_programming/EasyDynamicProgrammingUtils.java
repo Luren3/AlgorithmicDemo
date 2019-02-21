@@ -74,4 +74,49 @@ public class EasyDynamicProgrammingUtils {
 //        }
 //        return profit;
 //    }
+
+    /**
+     * 最大子序和
+     *
+     * @param nums
+     * @return
+     *
+     * 示例
+     * 输入: [-2,1,-3,4,-1,2,1,-5,4,8],
+     * 输出: 6
+     * 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+     */
+    public static int maxSubArray(int[] nums) {
+        int max = nums[0];
+        int sum = 0;
+        for (int num:nums){
+            sum += num;
+            if (sum > max){
+                max = sum;
+            }
+            if (sum < 0){
+                sum = 0;
+            }
+        }
+        return max;
+    }
+//    public static int maxSubArray(int[] nums) {
+//        int max = nums[0];
+//
+//        int[] com = new int[nums.length];
+//        com[0] = nums[0];
+//        for (int i = 1;i<nums.length;i++){
+//            com[i] = com[i-1]+nums[i];
+//        }
+//        for (int i=0;i<nums.length;i++){
+//            int sum = 0;
+//            for (int j=i;j < nums.length;j++){
+//                sum += nums[j];
+//                if (sum > max){
+//                    max = sum;
+//                }
+//            }
+//        }
+//        return max;
+//    }
 }

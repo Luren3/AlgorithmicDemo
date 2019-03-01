@@ -111,4 +111,23 @@ public class EasyMathUtils {
         }
         return true;
     }
+
+    /**
+     * 3的幂
+     *
+     * 给定一个整数，写一个函数来判断它是否是 3 的幂次方。
+     * @param n
+     * @return
+     *
+     * 示例
+     * 输入: 27
+     * 输出: true
+     */
+    public boolean isPowerOfThree(int n) {
+        if(n == 0) return false;
+        return n == 1 || ((n % 3 == 0) && isPowerOfThree(n/3));
+    }
+//    public boolean isPowerOfThree(int n) {
+//        return n>0&&1162261467%n==0;
+//    }
 }

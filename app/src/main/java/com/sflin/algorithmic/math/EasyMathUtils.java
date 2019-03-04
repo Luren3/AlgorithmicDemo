@@ -130,4 +130,68 @@ public class EasyMathUtils {
 //    public boolean isPowerOfThree(int n) {
 //        return n>0&&1162261467%n==0;
 //    }
+
+    /**
+     * 罗马数字转整数
+     *
+     * @param s
+     * @return
+     *
+     * 示例
+     * 输入: "III"
+     * 输出: 3
+     */
+    public int romanToInt(String s) {
+        int num = 0;
+        if (s.contains("IV")){
+            num += 4;
+            s = s.replace("IV","");
+        }
+        if (s.contains("IX")){
+            num += 9;
+            s = s.replace("IX","");
+        }
+        if (s.contains("XL")){
+            num += 40;
+            s = s.replace("XL","");
+        }
+        if (s.contains("XC")){
+            num += 90;
+            s = s.replace("XC","");
+        }
+        if (s.contains("CD")){
+            num += 400;
+            s = s.replace("CD","");
+        }
+        if (s.contains("CM")){
+            num += 900;
+            s = s.replace("CM","");
+        }
+        for (int i=0;i<s.length();i++){
+            switch (String.valueOf(s.charAt(i))){
+                case "I":
+                    num += 1;
+                    break;
+                case "V":
+                    num += 5;
+                    break;
+                case "X":
+                    num += 10;
+                    break;
+                case "L":
+                    num += 50;
+                    break;
+                case "C":
+                    num += 100;
+                    break;
+                case "D":
+                    num += 500;
+                    break;
+                case "M":
+                    num += 1000;
+                    break;
+            }
+        }
+        return num;
+    }
 }

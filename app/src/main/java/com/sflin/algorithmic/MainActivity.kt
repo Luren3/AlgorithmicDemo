@@ -6,6 +6,7 @@ import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
+import com.sflin.algorithmic.other.EasyOtherUtils
 import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.tree.TreeNode
 import kotlinx.android.synthetic.main.activity_main.*
@@ -80,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 //            Log.e("dsds","${result}")
 //            EasyDynamicProgrammingUtils.maxSubArray(intArrayOf(-2,1,-3,4,-1,2,1,-5,4,8))
 //            EasyMathUtils.countPrimes(10)
+            Log.e("-----", EasyOtherUtils.hammingDistance(1,4))
         }
     }
 }

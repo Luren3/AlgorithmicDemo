@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 //            Log.e("dsds","${result}")
 //            EasyDynamicProgrammingUtils.maxSubArray(intArrayOf(-2,1,-3,4,-1,2,1,-5,4,8))
 //            EasyMathUtils.countPrimes(10)
-            Log.e("-----", EasyOtherUtils.hammingDistance(1,4))
+            EasyOtherUtils.reverseBits(4)
         }
     }
 }

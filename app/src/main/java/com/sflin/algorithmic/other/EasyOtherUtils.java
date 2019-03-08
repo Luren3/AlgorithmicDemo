@@ -1,5 +1,8 @@
 package com.sflin.algorithmic.other;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by MagicFrost
  *
@@ -87,5 +90,36 @@ public class EasyOtherUtils {
         n = (n & 0x00ff00ff) << 8 | (n >>> 8) & 0x00ff00ff;
         n = (n & 0x0000ffff) << 16 | (n >>> 16) & 0x0000ffff;
         return n;
+    }
+
+    /**
+     * 杨辉三角
+     *
+     * @param numRows
+     * @return
+     *
+     * 示例
+     * 输入: 5
+     * 输出:
+     * [
+     *      [1],
+     *     [1,1],
+     *    [1,2,1],
+     *   [1,3,3,1],
+     *  [1,4,6,4,1]
+     * ]
+     */
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> lists = new ArrayList<>();
+        for (int i=0;i<numRows;i++){
+            int num = 1;
+            List<Integer> list = new ArrayList<>();
+            for (int j=0;j<=i;j++){
+                list.add(num);
+                num = num * (i - j)/(j + 1);
+            }
+            lists.add(list);
+        }
+        return lists;
     }
 }

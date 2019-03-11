@@ -1,7 +1,6 @@
 package com.sflin.algorithmic.other;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by MagicFrost
@@ -121,5 +120,51 @@ public class EasyOtherUtils {
             lists.add(list);
         }
         return lists;
+    }
+
+    /**
+     * 有效的括号
+     *
+     * @param s
+     * @return
+     *
+     * 示例
+     * 输入: "()"
+     * "{}[{}]((){})(){}"
+     * 输出: true
+     */
+    public static boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c:s.toCharArray()){
+            if (stack.isEmpty()){
+                stack.push(c);
+            }else {
+                if (stack.peek() == '(') {
+                    if (c != ')'){
+                        stack.push(c);
+                    }else {
+                        stack.pop();
+                    }
+                    continue;
+                }
+                if (stack.peek() == '[') {
+                    if (c != ']'){
+                        stack.push(c);
+                    }else {
+                        stack.pop();
+                    }
+                    continue;
+                }
+                if (stack.peek() == '{') {
+                    if (c != '}'){
+                        stack.push(c);
+                    }else {
+                        stack.pop();
+                    }
+                    continue;
+                }
+            }
+        }
+        return stack.isEmpty();
     }
 }

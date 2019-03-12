@@ -1,6 +1,7 @@
 package com.sflin.algorithmic
 
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
@@ -83,5 +84,8 @@ class MainActivity : AppCompatActivity() {
 //            EasyMathUtils.countPrimes(10)
             EasyOtherUtils.isValid("{}[{}]((){})(){}")
         }
+
+        val handler = Handler()
+        handler.removeMessages(0)
     }
 }

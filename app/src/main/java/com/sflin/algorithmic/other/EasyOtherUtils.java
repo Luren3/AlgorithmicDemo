@@ -167,4 +167,29 @@ public class EasyOtherUtils {
         }
         return stack.isEmpty();
     }
+
+    /**
+     * 缺失数字
+     *
+     * @param nums
+     * @return
+     *
+     * 示例
+     * 输入: [9,6,4,2,3,5,7,0,1]
+     * 输出: 8
+     */
+//    public int missingNumber(int[] nums) {
+//        int res=nums.length;
+//        for(int i=0;i<nums.length;i++){
+//            res +=(i-nums[i]);
+//        }
+//        return res;
+//    }
+    public int missingNumber(int[] nums) {
+        int n = 0;
+        for(int i =0 ; i < nums.length ; i++){
+            n = n ^ i ^ nums[i];
+        }
+        return n ^ nums.length;
+    }
 }

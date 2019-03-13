@@ -441,4 +441,52 @@ public class EasyArrayUtils {
 //            }
 //        }
 //    }
+
+    /**
+     * 求众数
+     *
+     * @param nums
+     * @return
+     *
+     * 示例
+     * 输入: [3,2,3]
+     * 输出: 3
+     */
+    public static int majorityElement(int[] nums) {
+        int num = nums[0];
+        int index = 1;
+        for (int i = 1;i<nums.length;i++){
+            if (num == nums[i]){
+                index++;
+            }else {
+                index--;
+                if (index == 0 && i < nums.length -1){
+                    num = nums[i+1];
+                }
+            }
+        }
+        return num;
+    }
+//    public static int majorityElement(int[] nums) {
+//        Map<Integer,Integer> map = new HashMap<>();
+//        for (int n:nums){
+//            if (!map.containsKey(n)){
+//                map.put(n,1);
+//            }else {
+//                int value = map.get(n);
+//                value++;
+//                map.put(n,value);
+//            }
+//        }
+//        int num = nums[0];
+//        int index = map.get(num);
+//        for (int key:map.keySet()){
+//            int value = map.get(key);
+//            if (index < value){
+//                index = value;
+//                num = key;
+//            }
+//        }
+//        return num;
+//    }
 }

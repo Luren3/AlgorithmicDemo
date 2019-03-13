@@ -1,7 +1,6 @@
 package com.sflin.algorithmic
 
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         array.setOnClickListener {
-            EasyArrayUtils.rotate(intArrayOf(1,2,3,4,5,6,7),1)
+            EasyArrayUtils.majorityElement(intArrayOf(3,2,3))
 //            EasyArrayUtils.intersect(intArrayOf(1,2),intArrayOf(1,1))
 //            EasyArrayUtils.moveZeroes(intArrayOf(1,0,0,3,12))
             val arr = Array(3){IntArray(3)}
@@ -84,8 +83,5 @@ class MainActivity : AppCompatActivity() {
 //            EasyMathUtils.countPrimes(10)
             EasyOtherUtils.isValid("{}[{}]((){})(){}")
         }
-
-        val handler = Handler()
-        handler.removeMessages(0)
     }
 }

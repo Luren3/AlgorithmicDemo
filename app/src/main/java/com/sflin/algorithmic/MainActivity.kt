@@ -32,6 +32,17 @@ class MainActivity : AppCompatActivity() {
             arr[2][1] = 8
             arr[2][2] = 9
 //            EasyArrayUtils.rotate(arr)
+
+//            val tes = arrayOf(
+//                intArrayOf(1, 4, 7, 11, 15),
+//                intArrayOf(2, 5, 8, 12, 19),
+//                intArrayOf(3, 6, 9, 16, 22),
+//                intArrayOf(10, 13, 14, 17, 24),
+//                intArrayOf(18, 21, 23, 26, 30)
+//            )
+            val tes = arrayOf(
+                intArrayOf(-5))
+            EasyArrayUtils.searchMatrix(tes,-5)
         }
 
         string.setOnClickListener {

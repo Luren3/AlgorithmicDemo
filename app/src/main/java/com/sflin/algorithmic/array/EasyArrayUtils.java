@@ -489,4 +489,52 @@ public class EasyArrayUtils {
 //        }
 //        return num;
 //    }
+
+    /**
+     * 搜索二维矩阵 II
+     *
+     * @param matrix
+     * @param target
+     * @return
+     *
+     * 示例
+     * [
+     *   [1,   4,  7, 11, 15],
+     *   [2,   5,  8, 12, 19],
+     *   [3,   6,  9, 16, 22],
+     *   [10, 13, 14, 17, 24],
+     *   [18, 21, 23, 26, 30]
+     * ]
+     * 给定 target = 5，返回 true。
+     *
+     * 给定 target = 20，返回 false。
+     */
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0) {
+            return false;
+        }
+        int rows = matrix.length,cols = matrix[0].length;
+
+        int row = rows - 1,col = 0;
+        while (row >= 0 && col < cols){
+            if (matrix[row][col] == target){
+                return true;
+            }else if (matrix[row][col] > target){
+                col = 0;
+                row--;
+            }else {
+                col++;
+            }
+        }
+        return false;
+    }
+//    public boolean searchMatrix(int[][] matrix, int target) {
+//        Map<Integer,Integer> map = new HashMap<>();
+//        for (int i=0;i<matrix.length;i++){
+//            for (int j=0;j<matrix[i].length;j++){
+//                map.put(matrix[i][j],matrix[i][j]);
+//            }
+//        }
+//        return map.containsKey(target);
+//    }
 }

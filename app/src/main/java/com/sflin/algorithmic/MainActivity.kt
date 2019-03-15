@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
+import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.other.EasyOtherUtils
@@ -93,6 +94,7 @@ class MainActivity : AppCompatActivity() {
 //            EasyDynamicProgrammingUtils.maxSubArray(intArrayOf(-2,1,-3,4,-1,2,1,-5,4,8))
 //            EasyMathUtils.countPrimes(10)
             EasyOtherUtils.isValid("{}[{}]((){})(){}")
+            HardDynamicProgrammingUtils.superEggDrop(2,6)
         }
     }
 }

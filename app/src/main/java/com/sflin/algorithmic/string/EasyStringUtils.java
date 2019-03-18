@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created MagicFrost.
  *
- * 初级字符串算法
+ * 简单字符串算法
  */
 public class EasyStringUtils {
 

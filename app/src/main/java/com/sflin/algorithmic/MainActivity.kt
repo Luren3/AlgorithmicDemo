@@ -2,13 +2,13 @@ package com.sflin.algorithmic
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.other.EasyOtherUtils
 import com.sflin.algorithmic.string.EasyStringUtils
+import com.sflin.algorithmic.string.MediumStringUtils
 import com.sflin.algorithmic.tree.TreeNode
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 //            EasyStringUtils.myAtoi("+-2")
 //            EasyStringUtils.strStr("mississippi","issip")
             val str = EasyStringUtils.longestCommonPrefix(arrayOf("flower","flow","flight"))
-            Log.e("dsds","${str}")
+            MediumStringUtils.partition("aab")
         }
 
         linkedList.setOnClickListener {

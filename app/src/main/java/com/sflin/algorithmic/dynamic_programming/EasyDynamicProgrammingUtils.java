@@ -3,7 +3,7 @@ package com.sflin.algorithmic.dynamic_programming;
 /**
  * Created by MagicFrost
  *
- * 初级动态规划算法
+ * 简单动态规划算法
  */
 public class EasyDynamicProgrammingUtils {
 

@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by MagicFrost
  *
- * 初级数组算法
+ * 简单数组算法
  */
 public class EasyArrayUtils {
 

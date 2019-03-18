@@ -3,7 +3,7 @@ package com.sflin.algorithmic.linkedList;
 /**
  * Created by MagicFrost
  *
- * 初级链表算法
+ * 简单链表算法
  */
 public class EasyLinkedListUtils {
 

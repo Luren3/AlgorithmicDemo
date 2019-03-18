@@ -5,8 +5,8 @@ import java.util.List;
 
 /**
  * Created by MagicFrost
- * <p>
- * 初级数学问题算法
+ *
+ * 简单数学问题算法
  */
 public class EasyMathUtils {
 

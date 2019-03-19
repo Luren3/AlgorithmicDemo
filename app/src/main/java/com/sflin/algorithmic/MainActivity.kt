@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
 //            EasyStringUtils.strStr("mississippi","issip")
             val str = EasyStringUtils.longestCommonPrefix(arrayOf("flower","flow","flight"))
             MediumStringUtils.partition("aab")
+            MediumStringUtils.wordBreak("leetcode", arrayListOf("leet","code"))
         }
 
         linkedList.setOnClickListener {

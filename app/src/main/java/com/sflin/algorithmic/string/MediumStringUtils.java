@@ -65,37 +65,38 @@ public class MediumStringUtils {
      * 输出: true
      * 解释: 返回 true 因为 "leetcode" 可以被拆分成 "leet code"。
      */
-//    public static boolean wordBreak(String s, List<String> wordDict) {
-//        int len = s.length();
-//        boolean[] dp = new boolean[len + 1];
-//        dp[0] = true;
-//        for (int i = 1; i <= len; i++)
-//            for (int j = 0; j < i; j++) {
-//                String tmp = s.substring(j, i);
-//                if (dp[j] && wordDict.contains(tmp)) {
-//                    dp[i] = true;
-//                    break;
-//                }
-//            }
-//        return dp[len];
-//    }
     public static boolean wordBreak(String s, List<String> wordDict) {
-        int n = s.length();
-        int max_length=0;
-        for(String temp:wordDict){
-            max_length = temp.length()>max_length? temp.length():max_length;
-        }
-        boolean[] memo = new boolean[n + 1];
-
-        memo[0] = true;
-        for (int i = 1; i <= n; i++) {
-            for (int j = i-1; j >=0 && max_length>=i-j; j--) {
-                if (memo[j] && wordDict.contains(s.substring(j, i))) {
-                    memo[i] = true;
+        int len = s.length();
+        boolean[] dp = new boolean[len + 1];
+        dp[0] = true;
+        for (int i = 1; i <= len; i++)
+            for (int j = 0; j < i; j++) {
+                String tmp = s.substring(j, i);
+                if (dp[j] && wordDict.contains(tmp)) {
+                    dp[i] = true;
                     break;
                 }
             }
-        }
-        return memo[n];
+        return dp[len];
     }
+//    public static boolean wordBreak(String s, List<String> wordDict) {
+//        int n = s.length();
+//        int max_length=0;
+//        for(String temp:wordDict){
+//            max_length = temp.length()>max_length? temp.length():max_length;
+//        }
+//        boolean[] memo = new boolean[n + 1];
+//
+//        memo[0] = true;
+//        for (int i = 1; i <= n; i++) {
+//            for (int j = i-1; j >=0 && max_length>=i-j; j--) {
+//                String str = s.substring(j, i);
+//                if (memo[j] && wordDict.contains(str)) {
+//                    memo[i] = true;
+//                    break;
+//                }
+//            }
+//        }
+//        return memo[n];
+//    }
 }

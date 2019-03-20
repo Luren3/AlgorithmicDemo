@@ -8,6 +8,7 @@ import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.other.EasyOtherUtils
 import com.sflin.algorithmic.string.EasyStringUtils
+import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
 import com.sflin.algorithmic.tree.TreeNode
 import kotlinx.android.synthetic.main.activity_main.*
@@ -52,7 +53,8 @@ class MainActivity : AppCompatActivity() {
 //            EasyStringUtils.strStr("mississippi","issip")
             val str = EasyStringUtils.longestCommonPrefix(arrayOf("flower","flow","flight"))
             MediumStringUtils.partition("aab")
-            MediumStringUtils.wordBreak("leetcode", arrayListOf("leet","code"))
+            MediumStringUtils.wordBreak("pineapplepenapple", arrayListOf("apple", "pen", "applepen", "pine", "pineapple"))
+            HardStringUtils.wordBreak("leetcode", arrayListOf("leet", "code"))
         }
 
         linkedList.setOnClickListener {

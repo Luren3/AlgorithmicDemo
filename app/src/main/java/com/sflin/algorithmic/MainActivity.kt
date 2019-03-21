@@ -10,6 +10,7 @@ import com.sflin.algorithmic.other.EasyOtherUtils
 import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
+import com.sflin.algorithmic.string.Trie
 import com.sflin.algorithmic.tree.TreeNode
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -55,6 +56,9 @@ class MainActivity : AppCompatActivity() {
             MediumStringUtils.partition("aab")
             MediumStringUtils.wordBreak("pineapplepenapple", arrayListOf("apple", "pen", "applepen", "pine", "pineapple"))
             HardStringUtils.wordBreak("leetcode", arrayListOf("leet", "code"))
+
+            val trie = Trie();
+            trie.insert("apple")
         }
 
         linkedList.setOnClickListener {

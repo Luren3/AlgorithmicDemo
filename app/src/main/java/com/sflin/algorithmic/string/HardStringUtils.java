@@ -73,4 +73,26 @@ public class HardStringUtils {
             }
         }
     }
+
+    /**
+     * 单词搜索 II
+     *
+     * @param board
+     * @param words
+     * @return
+     * 示例
+     * 输入:
+     * words = ["oath","pea","eat","rain"] and board =
+     * [
+     *   ['o','a','a','n'],
+     *   ['e','t','a','e'],
+     *   ['i','h','k','r'],
+     *   ['i','f','l','v']
+     * ]
+     *
+     * 输出: ["eat","oath"]
+     */
+    public List<String> findWords(char[][] board, String[] words) {
+        return null;
+    }
 }

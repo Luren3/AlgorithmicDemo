@@ -50,6 +50,13 @@ public class Trie {
         return true;
     }
 
+    public TreeNode next(char c){
+        if ( 'a' <= c && c <= 'z'){
+            return node.child[c];
+        }
+        return null;
+    }
+
     class TreeNode{
         String value;
         TreeNode[] child;

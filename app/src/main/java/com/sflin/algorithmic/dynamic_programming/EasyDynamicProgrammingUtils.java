@@ -102,12 +102,6 @@ public class EasyDynamicProgrammingUtils {
     }
 //    public static int maxSubArray(int[] nums) {
 //        int max = nums[0];
-//
-//        int[] com = new int[nums.length];
-//        com[0] = nums[0];
-//        for (int i = 1;i<nums.length;i++){
-//            com[i] = com[i-1]+nums[i];
-//        }
 //        for (int i=0;i<nums.length;i++){
 //            int sum = 0;
 //            for (int j=i;j < nums.length;j++){

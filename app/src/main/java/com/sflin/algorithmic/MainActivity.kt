@@ -3,6 +3,7 @@ package com.sflin.algorithmic
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.sflin.algorithmic.array.EasyArrayUtils
+import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             val tes = arrayOf(
                 intArrayOf(-5))
             EasyArrayUtils.searchMatrix(tes,-5)
+            MediumArrayUtils.increasingTriplet(intArrayOf(2,1,5,0,3))
         }
 
         string.setOnClickListener {
@@ -103,5 +105,6 @@ class MainActivity : AppCompatActivity() {
             EasyOtherUtils.isValid("{}[{}]((){})(){}")
             HardDynamicProgrammingUtils.superEggDrop(2,6)
         }
+
     }
 }

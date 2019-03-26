@@ -43,4 +43,34 @@ public class MediumArrayUtils {
 //        }
 //        return result;
 //    }
+
+    /**
+     * 递增的三元子序列
+     *
+     * @param nums
+     * @return
+     *
+     * 示例
+     * 输入: [1,2,3,4,5]
+     * 输出: true
+     */
+    public static boolean increasingTriplet(int[] nums) {
+        if (nums.length < 3) return false;
+        int first = Integer.MAX_VALUE,second = Integer.MAX_VALUE;
+        for (int num:nums){
+            if (first > num){
+                first = num;
+                continue;
+            }
+            if (first < num && num < second){
+                second = num;
+                continue;
+            }
+            if (num > second){
+                return true;
+            }
+
+        }
+        return false;
+    }
 }

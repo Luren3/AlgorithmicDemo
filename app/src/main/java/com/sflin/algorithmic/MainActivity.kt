@@ -44,10 +44,7 @@ class MainActivity : AppCompatActivity() {
 //                intArrayOf(10, 13, 14, 17, 24),
 //                intArrayOf(18, 21, 23, 26, 30)
 //            )
-            val tes = arrayOf(
-                intArrayOf(-5))
-            EasyArrayUtils.searchMatrix(tes,-5)
-            MediumArrayUtils.increasingTriplet(intArrayOf(2,1,5,0,3))
+            MediumArrayUtils.productExceptSelf(intArrayOf(1,2,3,4))
         }
 
         string.setOnClickListener {

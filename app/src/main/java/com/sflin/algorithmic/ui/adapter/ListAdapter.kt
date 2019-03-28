@@ -31,7 +31,7 @@ class ListAdapter(private val mList: MutableList<String>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: ListAdapter.ViewHolder, position: Int) {
         holder.mName.text = mList[position]
 
-        holder.itemView.setOnClickListener {
+        holder.mName.setOnClickListener {
             mOnCallBack?.let {
                 mOnCallBack!!.onClick(mList[position])
             }

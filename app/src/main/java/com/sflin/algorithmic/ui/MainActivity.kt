@@ -9,6 +9,7 @@ import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
+import com.sflin.algorithmic.stack.MediumStackUtils
 import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
@@ -115,7 +116,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun stack() {
-
+        MediumStackUtils.findKthLargest(intArrayOf(3,2,3,1,2,4,5,5,6),2)
     }
 
     private fun linkedList() {

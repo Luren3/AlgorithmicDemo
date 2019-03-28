@@ -1,4 +1,4 @@
-package com.sflin.algorithmic.design;
+package com.sflin.algorithmic.array;
 
 import java.util.Arrays;
 import java.util.Random;

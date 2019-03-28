@@ -1,4 +1,4 @@
-package com.sflin.algorithmic.design;
+package com.sflin.algorithmic.stack;
 
 import java.util.Stack;
 

@@ -1,9 +1,11 @@
 package com.sflin.algorithmic.ui
 
+import android.content.pm.ActivityInfo.CONFIG_ORIENTATION
+import android.content.pm.ActivityInfo.CONFIG_SCREEN_SIZE
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import com.sflin.algorithmic.R
 import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
@@ -18,17 +20,33 @@ import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+
+
 class MainActivity : AppCompatActivity() {
 
     private var adapter: ListAdapter? = null
 
     private val listData = arrayListOf<String>()
 
+    private var mOldConfig: Configuration? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(com.sflin.algorithmic.R.layout.activity_main)
+
+        mOldConfig = Configuration(getResources().getConfiguration());
 
         init()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        val diff = newConfig.diff(mOldConfig)
+        if (diff and (CONFIG_ORIENTATION or CONFIG_SCREEN_SIZE) != 0) {
+//            onHandleConfigChanged()
+        }
+        mOldConfig?.setTo(newConfig)
+        super.onConfigurationChanged(newConfig)
     }
 
     private fun init() {
@@ -117,6 +135,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun stack() {
         MediumStackUtils.findKthLargest(intArrayOf(3,2,3,1,2,4,5,5,6),2)
+        MediumStackUtils.kthSmallest(arrayOf(intArrayOf(1,5,9),intArrayOf(10,11,13),intArrayOf(12,13,15)),8)
     }
 
     private fun linkedList() {

@@ -175,4 +175,60 @@ public class MediumArrayUtils {
 //        }
 //        return newNums;
 //    }
+
+    /**
+     * 有序矩阵中第K小的元素
+     *
+     * @param matrix
+     * @param k
+     * @return
+     *
+     * 示例
+     * matrix = [
+     *    [ 1,  5,  9],
+     *    [10, 11, 13],
+     *    [12, 13, 15]
+     * ],
+     * k = 8,
+     *
+     * 返回 13。
+     */
+    public static int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        int left = matrix[0][0];
+        int right = matrix[n-1][n-1];
+        while (left < right){
+            int mid = left + (right-left)/2;
+            int count = 0;
+            for (int i=n-1,j=0;i>=0 && j<n;){
+                if (matrix[i][j] > mid){
+                    i--;
+                }else {
+                    j++;
+                    count += i+1;
+                }
+            }
+            if (count < k){
+                left = mid + 1;
+            }else {
+                right = mid;
+            }
+        }
+        return left;
+    }
+//    public static int kthSmallest(int[][] matrix, int k) {
+//        int row = matrix.length;
+//        int col = matrix[0].length;
+//        int n = row * col;
+//        int[] arr = new int[n];
+//        int index = 0;
+//        for (int i=0;i<matrix.length;i++){
+//            for (int j=0;j<matrix[i].length;j++){
+//                arr[index] = matrix[i][j];
+//                index++;
+//            }
+//        }
+//        Arrays.sort(arr);
+//        return arr[k];
+//    }
 }

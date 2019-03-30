@@ -131,11 +131,11 @@ class MainActivity : AppCompatActivity() {
 //            intArrayOf(18, 21, 23, 26, 30)
 //        )
         MediumArrayUtils.productExceptSelf(intArrayOf(1, 2, 3, 4))
+        MediumArrayUtils.kthSmallest(arrayOf(intArrayOf(1,5,9),intArrayOf(10,11,13),intArrayOf(12,13,15)),8)
     }
 
     private fun stack() {
         MediumStackUtils.findKthLargest(intArrayOf(3,2,3,1,2,4,5,5,6),2)
-        MediumStackUtils.kthSmallest(arrayOf(intArrayOf(1,5,9),intArrayOf(10,11,13),intArrayOf(12,13,15)),8)
     }
 
     private fun linkedList() {

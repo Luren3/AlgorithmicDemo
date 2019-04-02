@@ -3,7 +3,9 @@ package com.sflin.algorithmic.ui
 import android.content.pm.ActivityInfo.CONFIG_ORIENTATION
 import android.content.pm.ActivityInfo.CONFIG_SCREEN_SIZE
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import com.sflin.algorithmic.array.EasyArrayUtils
@@ -11,7 +13,7 @@ import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
-import com.sflin.algorithmic.stack.MediumStackUtils
+import com.sflin.algorithmic.stack.MedianFinder
 import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
@@ -134,8 +136,19 @@ class MainActivity : AppCompatActivity() {
         MediumArrayUtils.kthSmallest(arrayOf(intArrayOf(1,5,9),intArrayOf(10,11,13),intArrayOf(12,13,15)),8)
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun stack() {
-        MediumStackUtils.findKthLargest(intArrayOf(3,2,3,1,2,4,5,5,6),2)
+//        MediumStackUtils.findKthLargest(intArrayOf(3,2,3,1,2,4,5,5,6),2)
+        val median = MedianFinder()
+        median.addNum(1)
+        median.addNum(2)
+        median.addNum(3)
+        median.addNum(7)
+        median.addNum(4)
+        median.addNum(6)
+        median.addNum(5)
+        median.addNum(8)
+        median.findMedian()
     }
 
     private fun linkedList() {

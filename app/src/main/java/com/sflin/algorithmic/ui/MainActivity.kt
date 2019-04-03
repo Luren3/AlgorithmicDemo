@@ -13,6 +13,7 @@ import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
+import com.sflin.algorithmic.stack.HardStackUtils
 import com.sflin.algorithmic.stack.MedianFinder
 import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.string.HardStringUtils
@@ -21,8 +22,6 @@ import com.sflin.algorithmic.string.Trie
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -62,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter = ListAdapter(listData)
         adapter!!.setOnClickListener(object : ListAdapter.OnCallBack {
+            @RequiresApi(Build.VERSION_CODES.N)
             override fun onClick(name: String) {
                 switchAlgorithmic(name)
             }
@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         list.adapter = adapter
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun switchAlgorithmic(name: String) {
         when (name) {
             "字符串" ->{
@@ -149,6 +150,8 @@ class MainActivity : AppCompatActivity() {
         median.addNum(5)
         median.addNum(8)
         median.findMedian()
+
+        HardStackUtils.maxSlidingWindow(intArrayOf(1,2,3,4,5,6,7),3);
     }
 
     private fun linkedList() {

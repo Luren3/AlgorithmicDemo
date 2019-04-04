@@ -15,6 +15,7 @@ import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.stack.HardStackUtils
 import com.sflin.algorithmic.stack.MedianFinder
+import com.sflin.algorithmic.stack.MediumStackUtils
 import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
@@ -152,6 +153,7 @@ class MainActivity : AppCompatActivity() {
         median.findMedian()
 
         HardStackUtils.maxSlidingWindow(intArrayOf(1,2,3,4,5,6,7),3);
+        MediumStackUtils.calculate(" 3+5/2 ")
     }
 
     private fun linkedList() {

@@ -120,5 +120,66 @@ public class MediumStackUtils {
         return result;
     }
 
-
+    /**
+     * 逆波兰表达式求值
+     *
+     * @param tokens
+     * @return
+     * 示例
+     * 输入: ["2", "1", "+", "3", "*"]
+     * 输出: 9
+     * 解释: ((2 + 1) * 3) = 9
+     */
+    private static int N =-1;
+    public static int evalRPN(String[] tokens) {
+        if(N==-1)
+            N=tokens.length-1;
+        String s = tokens[N--];
+        char c = s.charAt(0);
+        if(s.length()==1&&"+-*/".indexOf(c)!=-1){
+            int a = evalRPN(tokens);
+            int b = evalRPN(tokens);
+            switch(c){
+                case '+':return a+b;
+                case '-':return b-a;
+                case '*':return a*b;
+                case '/':return b/a;
+                default:break;
+            }
+        }
+        return Integer.parseInt(s);
+    }
+//    public static int evalRPN(String[] tokens) {
+//        Stack<Integer> stack = new Stack<>();
+//        int n=0,m=0;
+//        for (int i=0;i<tokens.length;i++){
+//            String token = tokens[i];
+//            switch (token){
+//                case "+":
+//                    n=stack.pop();
+//                    m=stack.pop();
+//                    stack.push(m+n);
+//                    break;
+//                case "-":
+//                    n=stack.pop();
+//                    m=stack.pop();
+//                    stack.push(m-n);
+//                    break;
+//                case "*":
+//                    n=stack.pop();
+//                    m=stack.pop();
+//                    stack.push(m*n);
+//                    break;
+//                case "/":
+//                    n=stack.pop();
+//                    m=stack.pop();
+//                    stack.push(m/n);
+//                    break;
+//                default:
+//                    stack.push(Integer.parseInt(token));
+//                    break;
+//            }
+//        }
+//        return stack.pop();
+//    }
 }

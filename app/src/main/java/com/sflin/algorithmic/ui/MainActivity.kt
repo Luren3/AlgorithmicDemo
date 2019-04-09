@@ -154,6 +154,7 @@ class MainActivity : AppCompatActivity() {
 
         HardStackUtils.maxSlidingWindow(intArrayOf(1,2,3,4,5,6,7),3);
         MediumStackUtils.calculate(" 3+5/2 ")
+        MediumStackUtils.evalRPN(arrayOf("2", "1", "+", "3", "*"))
     }
 
     private fun linkedList() {

@@ -11,8 +11,9 @@ import android.support.v7.widget.LinearLayoutManager
 import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
-import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
+import com.sflin.algorithmic.linkedList.MediumLinkedListUtils
+import com.sflin.algorithmic.linkedList.Node
 import com.sflin.algorithmic.stack.HardStackUtils
 import com.sflin.algorithmic.stack.MedianFinder
 import com.sflin.algorithmic.stack.MediumStackUtils
@@ -167,7 +168,15 @@ class MainActivity : AppCompatActivity() {
 //        listNode2.next = ListNode(3)
 //        listNode2.next.next = ListNode(5)
 //        EasyLinkedListUtils.mergeTwoLists(listNode, listNode2)
-        EasyLinkedListUtils.hasCycle(listNode)
+//        EasyLinkedListUtils.hasCycle(listNode)
+        val node = Node()
+        node.`val` = 1
+        node.next = Node().apply {
+            `val` = 2
+            random = Node()
+        }
+        node.random = Node()
+        MediumLinkedListUtils.copyRandomList(node)
     }
 
     private fun tree() {

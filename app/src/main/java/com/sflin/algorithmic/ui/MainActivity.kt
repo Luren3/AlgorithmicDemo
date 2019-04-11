@@ -159,16 +159,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun linkedList() {
-        val listNode = ListNode(3)
+        val listNode = ListNode(4)
         listNode.next = ListNode(2)
-        listNode.next.next = ListNode(0)
-        listNode.next.next.next = ListNode(-4)
+        listNode.next.next = ListNode(1)
+        listNode.next.next.next = ListNode(3)
 
 //        val listNode2 = ListNode(1)
 //        listNode2.next = ListNode(3)
 //        listNode2.next.next = ListNode(5)
 //        EasyLinkedListUtils.mergeTwoLists(listNode, listNode2)
 //        EasyLinkedListUtils.hasCycle(listNode)
+        MediumLinkedListUtils.sortList(listNode)
         val node = Node()
         node.`val` = 1
         node.next = Node().apply {

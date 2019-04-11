@@ -1,7 +1,6 @@
 package com.sflin.algorithmic.linkedList;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by MagicFrost
@@ -85,4 +84,77 @@ public class MediumLinkedListUtils {
         }
         return map.get(head);
     }
+
+    /**
+     * 排序链表
+     *
+     * @param head
+     * @return
+     * 示例
+     * 输入: 4->2->1->3
+     * 输出: 1->2->3->4
+     */
+    public static ListNode sortList(ListNode head) {
+        return mergeSort(head);
+    }
+    private static ListNode mergeSort(ListNode head){
+        if(head == null || head.next == null) return head;
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode tmp = null;
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            tmp = slow;
+            slow = slow.next;
+        }
+        tmp.next = null;
+        ListNode l = mergeSort(head);
+        ListNode r = mergeSort(slow);
+        return merge(l,r);
+    }
+    private static ListNode merge(ListNode l,ListNode r){
+        ListNode head = new ListNode(0);
+        ListNode cur = head;
+        while(l != null && r != null){
+            if(l.val < r.val){
+                cur.next = l;
+                cur = cur.next;
+                l = l.next;
+            }
+            else{
+                cur.next = r;
+                cur = cur.next;
+                r = r.next;
+            }
+        }
+        if(l != null)
+            cur.next = l;
+        if(r != null)
+            cur.next = r;
+        return head.next;
+    }
+//    public static ListNode sortList(ListNode head) {
+//        List<Integer> list = new ArrayList<>();
+//        while (head != null){
+//            list.add(head.val);
+//            head = head.next;
+//        }
+//        Collections.sort(list, new Comparator<Integer>() {
+//            @Override
+//            public int compare(Integer o1, Integer o2) {
+//                return o1 - o2;
+//            }
+//        });
+//        ListNode temp = null;
+//        for (int val:list){
+//            if (head == null){
+//                head = new ListNode(val);
+//                temp = head;
+//            }else {
+//                temp.next = new ListNode(val);
+//                temp = temp.next;
+//            }
+//        }
+//        return head;
+//    }
 }

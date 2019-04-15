@@ -157,4 +157,45 @@ public class MediumLinkedListUtils {
 //        }
 //        return head;
 //    }
+
+    /**
+     * 奇偶链表
+     *
+     * @param head
+     * @return
+     * 示例
+     * 输入: 1->2->3->4->5->NULL
+     * 输出: 1->3->5->2->4->NULL
+     */
+    public static ListNode oddEvenList(ListNode head) {
+        ListNode odd = null,even = null;
+        ListNode oddCur = null;
+        ListNode evenCur = null;
+        int index = 1;
+        while (head != null){
+            if (index%2 == 0){
+                if (even == null){
+                    even = new ListNode(head.val);
+                    evenCur = even;
+                }else {
+                    evenCur.next = new ListNode(head.val);
+                    evenCur = evenCur.next;
+                }
+            }else {
+                if (odd == null){
+                    odd = new ListNode(head.val);
+                    oddCur = odd;
+                }else {
+                    oddCur.next = new ListNode(head.val);
+                    oddCur = oddCur.next;
+                }
+            }
+            head = head.next;
+            index++;
+            if (head == null){
+                oddCur.next = even;
+            }
+        }
+        return odd;
+    }
 }

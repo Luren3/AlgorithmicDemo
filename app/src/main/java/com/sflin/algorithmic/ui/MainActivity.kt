@@ -159,10 +159,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun linkedList() {
-        val listNode = ListNode(4)
+        val listNode = ListNode(1)
         listNode.next = ListNode(2)
-        listNode.next.next = ListNode(1)
-        listNode.next.next.next = ListNode(3)
+        listNode.next.next = ListNode(3)
+        listNode.next.next.next = ListNode(4)
+        listNode.next.next.next.next = ListNode(5)
 
 //        val listNode2 = ListNode(1)
 //        listNode2.next = ListNode(3)
@@ -178,6 +179,7 @@ class MainActivity : AppCompatActivity() {
         }
         node.random = Node()
         MediumLinkedListUtils.copyRandomList(node)
+        MediumLinkedListUtils.oddEvenList(listNode)
     }
 
     private fun tree() {

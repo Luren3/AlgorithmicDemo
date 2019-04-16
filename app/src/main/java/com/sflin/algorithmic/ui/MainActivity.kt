@@ -8,9 +8,11 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
+import com.sflin.algorithmic.hash.EasyHashUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.linkedList.MediumLinkedListUtils
 import com.sflin.algorithmic.linkedList.Node
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         listData.add("树")
         listData.add("数学")
         listData.add("动态规划")
+        listData.add("哈希与映射")
 
         adapter = ListAdapter(listData)
         adapter!!.setOnClickListener(object : ListAdapter.OnCallBack {
@@ -95,6 +98,9 @@ class MainActivity : AppCompatActivity() {
             }
             "数学" ->{
 
+            }
+            "哈希与映射" ->{
+                hash()
             }
         }
     }
@@ -210,5 +216,11 @@ class MainActivity : AppCompatActivity() {
 //        EasyMathUtils.countPrimes(10)
 //        EasyOtherUtils.isValid("{}[{}]((){})(){}")
         HardDynamicProgrammingUtils.superEggDrop(2, 6)
+    }
+
+    private fun hash() {
+        val a = charArrayOf('A')
+        Log.e("dsds","${a[0].hashCode()}")
+        EasyHashUtils.titleToNumber("AB")
     }
 }

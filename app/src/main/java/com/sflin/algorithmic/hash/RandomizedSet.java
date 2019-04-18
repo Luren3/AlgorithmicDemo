@@ -5,7 +5,32 @@ import java.util.*;
 /**
  * Created by MagicFrost
  *
- * 简单哈希与映射算法
+ * 常数时间插入、删除和获取随机元素
+ *
+ * 示例
+ * // 初始化一个空的集合。
+ * RandomizedSet randomSet = new RandomizedSet();
+ *
+ * // 向集合中插入 1 。返回 true 表示 1 被成功地插入。
+ * randomSet.insert(1);
+ *
+ * // 返回 false ，表示集合中不存在 2 。
+ * randomSet.remove(2);
+ *
+ * // 向集合中插入 2 。返回 true 。集合现在包含 [1,2] 。
+ * randomSet.insert(2);
+ *
+ * // getRandom 应随机返回 1 或 2 。
+ * randomSet.getRandom();
+ *
+ * // 从集合中移除 1 ，返回 true 。集合现在包含 [2] 。
+ * randomSet.remove(1);
+ *
+ * // 2 已在集合中，所以返回 false 。
+ * randomSet.insert(2);
+ *
+ * // 由于 2 是集合中唯一的数字，getRandom 总是返回 2 。
+ * randomSet.getRandom();
  */
 public class RandomizedSet {
 
@@ -56,3 +81,10 @@ public class RandomizedSet {
         return list.get(index);
     }
 }
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * RandomizedSet obj = new RandomizedSet();
+ * boolean param_1 = obj.insert(val);
+ * boolean param_2 = obj.remove(val);
+ * int param_3 = obj.getRandom();
+ */

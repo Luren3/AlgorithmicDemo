@@ -13,6 +13,7 @@ import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.hash.EasyHashUtils
+import com.sflin.algorithmic.hash.RandomizedSet
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.linkedList.MediumLinkedListUtils
 import com.sflin.algorithmic.linkedList.Node
@@ -222,5 +223,14 @@ class MainActivity : AppCompatActivity() {
         val a = charArrayOf('A')
         Log.e("dsds","${a[0].hashCode()}")
         EasyHashUtils.titleToNumber("AB")
+
+        val randomizedSet = RandomizedSet()
+        randomizedSet.insert(1)
+        randomizedSet.remove(2)
+        randomizedSet.insert(2)
+        randomizedSet.random
+        randomizedSet.remove(1)
+        randomizedSet.insert(2)
+        randomizedSet.random
     }
 }

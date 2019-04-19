@@ -8,10 +8,8 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.array.MediumArrayUtils
-import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.hash.EasyHashUtils
 import com.sflin.algorithmic.hash.RandomizedSet
 import com.sflin.algorithmic.linkedList.ListNode
@@ -24,6 +22,8 @@ import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
 import com.sflin.algorithmic.string.Trie
+import com.sflin.algorithmic.tree.EasyTreeUtils
+import com.sflin.algorithmic.tree.MediumTreeUtils
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -190,40 +190,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tree() {
-        val root = TreeNode(1)
-        root.left = TreeNode(2).apply {
-            left = TreeNode(3).apply {
-                left = TreeNode(5)
-                right = TreeNode(6)
-            }
-            right = TreeNode(4).apply {
-                left = TreeNode(7)
-                right = TreeNode(8)
-            }
+        val root = TreeNode(3)
+        root.left = TreeNode(1).apply {
+            right = TreeNode(2)
         }
-        root.right = TreeNode(2).apply {
-            left = TreeNode(4).apply {
-                left = TreeNode(8)
-                right = TreeNode(7)
-            }
-            right = TreeNode(3).apply {
-                left = TreeNode(6)
-                right = TreeNode(5)
-            }
-        }
-//        EasyTreeUtils.levelOrder(root)
-//        Log.e("dsds", "${result}")
-//        EasyDynamicProgrammingUtils.maxSubArray(intArrayOf(-2, 1, -3, 4, -1, 2, 1, -5, 4, 8))
-//        EasyMathUtils.countPrimes(10)
-//        EasyOtherUtils.isValid("{}[{}]((){})(){}")
-        HardDynamicProgrammingUtils.superEggDrop(2, 6)
+        root.right = TreeNode(4)
+        MediumTreeUtils.levelOrder(root)
+        EasyTreeUtils.sortedArrayToBST(intArrayOf(-10,-3,0,5,9))
+        MediumTreeUtils.kthSmallest(root,1)
     }
 
     private fun hash() {
-        val a = charArrayOf('A')
-        Log.e("dsds","${a[0].hashCode()}")
         EasyHashUtils.titleToNumber("AB")
-
         val randomizedSet = RandomizedSet()
         randomizedSet.insert(1)
         randomizedSet.remove(2)

@@ -121,16 +121,49 @@ public class MediumTreeUtils {
     public static int kthSmallest(TreeNode root, int k) {
         index = 0;
         value = 0;
-        travers(root,k);
+        preOrderTravers(root,k);
         return value;
     }
-    private static void travers(TreeNode root,int k) {
+    private static void preOrderTravers(TreeNode root,int k) {
         if (root == null) return;
-        travers(root.left, k);
+        preOrderTravers(root.left, k);
         index++;
         if (index == k){
             value = root.val;
         }
-        travers(root.right,k);
+        preOrderTravers(root.right,k);
+    }
+
+    /**
+     * 二叉树的最近公共祖先
+     *
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     *
+     * 示例
+     * 输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+     *
+     * 输出: 3
+     * 解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
+     */
+    public static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return root;
+        }
+        if (root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) {
+            return root;
+        } else if (left != null) {
+            return left;
+        } else if (right != null) {
+            return right;
+        }
+        return null;
     }
 }

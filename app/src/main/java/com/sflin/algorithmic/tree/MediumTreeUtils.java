@@ -152,7 +152,7 @@ public class MediumTreeUtils {
         if (root == null) {
             return root;
         }
-        if (root == p || root == q) {
+        if (root.val == p.val || root.val == q.val) {
             return root;
         }
         TreeNode left = lowestCommonAncestor(root.left, p, q);

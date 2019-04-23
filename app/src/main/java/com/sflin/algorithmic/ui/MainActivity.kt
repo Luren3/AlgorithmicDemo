@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
 import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.hash.EasyHashUtils
@@ -22,8 +23,7 @@ import com.sflin.algorithmic.string.EasyStringUtils
 import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
 import com.sflin.algorithmic.string.Trie
-import com.sflin.algorithmic.tree.EasyTreeUtils
-import com.sflin.algorithmic.tree.MediumTreeUtils
+import com.sflin.algorithmic.tree.Codec
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -190,14 +190,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tree() {
-        val root = TreeNode(3)
-        root.left = TreeNode(1).apply {
-            right = TreeNode(2)
+        val root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3).apply {
+            left = TreeNode(4)
+            right = TreeNode(5)
         }
-        root.right = TreeNode(4)
-        MediumTreeUtils.levelOrder(root)
-        EasyTreeUtils.sortedArrayToBST(intArrayOf(-10,-3,0,5,9))
-        MediumTreeUtils.kthSmallest(root,1)
+//        MediumTreeUtils.levelOrder(root)
+//        EasyTreeUtils.sortedArrayToBST(intArrayOf(-10,-3,0,5,9))
+//        MediumTreeUtils.kthSmallest(root,1)
+//        MediumTreeUtils.lowestCommonAncestor(root, TreeNode(6), TreeNode(7))
+        val codec = Codec()
+        val str = codec.serialize(root)
+        Log.e("dsdsd",str)
+        codec.deserialize(str)
     }
 
     private fun hash() {

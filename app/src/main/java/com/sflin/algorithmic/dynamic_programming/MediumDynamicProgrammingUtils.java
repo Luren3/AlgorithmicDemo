@@ -14,7 +14,7 @@ public class MediumDynamicProgrammingUtils {
      * @param k
      * @return 示例
      * 输入:
-     * s = "aaabb", k = 3
+     * s = "bbaaacbd", k = 3
      * <p>
      * 输出:
      * 3

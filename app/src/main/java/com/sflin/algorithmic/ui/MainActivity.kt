@@ -26,6 +26,7 @@ import com.sflin.algorithmic.string.HardStringUtils
 import com.sflin.algorithmic.string.MediumStringUtils
 import com.sflin.algorithmic.string.Trie
 import com.sflin.algorithmic.tree.Codec
+import com.sflin.algorithmic.tree.HardTreeUtils
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -206,6 +207,7 @@ class MainActivity : AppCompatActivity() {
         val str = codec.serialize(root)
         Log.e("dsdsd",str)
         codec.deserialize(str)
+        HardTreeUtils.maxPathSum(root)
     }
 
     private fun hash() {
@@ -222,9 +224,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun dp(){
         MediumDynamicProgrammingUtils.longestSubstring("abb",2)
-        val root = TreeNode(1)
-        root.left = TreeNode(2)
-        root.right = TreeNode(3)
-        HardDynamicProgrammingUtils.maxPathSum(root)
+        HardDynamicProgrammingUtils.longestConsecutive(intArrayOf(0,-1))
     }
 }

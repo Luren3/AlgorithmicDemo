@@ -61,4 +61,49 @@ public class MediumDynamicProgrammingUtils {
         int i = c - 'a';
         return counts[i] > 0 && counts[i] < k;
     }
+
+    /**
+     * 完全平方数
+     * @param n
+     * @return
+     * 输入: n = 12
+     * 输出: 3
+     * 解释: 12 = 4 + 4 + 4.
+     *
+     * n = 4^a(8b+7)
+     */
+//    public int numSquares(int n) {
+//        int[] dp = new int[n+1];
+//        Arrays.fill(dp, Integer.MAX_VALUE);
+//        dp[0] = 0;
+//        for (int i=1;i<=n;i++){
+//            int min = Integer.MAX_VALUE;
+//            int j = 1;
+//            while(i - j*j >= 0) {
+//                min = Math.min(min, dp[i - j*j] + 1);
+//                j++;
+//            }
+//            dp[i] = min;
+//        }
+//        return dp[n];
+//    }
+    public int numSquares(int n) {
+        while (n % 4 == 0){
+            n /= 4;
+        }
+        if (n % 8 == 7){//满足四平方和定理
+            return 4;
+        }
+        int a = 0;
+        while(a * a < n) {
+            int b = (int) Math.sqrt(n - a * a);
+            if(a * a + b * b == n) {
+                if(a == 0 && b == 0) return 0;
+                else if(a != 0 && b != 0) return 2;
+                else return 1;
+            }
+            a = a + 1;
+        }
+        return 3;
+    }
 }

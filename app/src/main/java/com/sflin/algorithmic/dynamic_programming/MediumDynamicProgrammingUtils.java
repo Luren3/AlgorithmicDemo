@@ -88,12 +88,14 @@ public class MediumDynamicProgrammingUtils {
 //        return dp[n];
 //    }
     public int numSquares(int n) {
+        //先根据上面提到的公式来缩小n
         while (n % 4 == 0){
             n /= 4;
         }
-        if (n % 8 == 7){//满足四平方和定理
+        if (n % 8 == 7){//满足四平方和定
             return 4;
         }
+        //在判断缩小后的数是否可以由一个数的平方或者两个数平方的和组成
         int a = 0;
         while(a * a < n) {
             int b = (int) Math.sqrt(n - a * a);
@@ -104,6 +106,58 @@ public class MediumDynamicProgrammingUtils {
             }
             a = a + 1;
         }
+        //如果不是返回3
         return 3;
+    }
+
+    /**
+     * 最长上升子序列
+     *
+     * @param nums
+     * @return
+     * 示例
+     * 输入: [10,9,2,5,3,7,101,18]
+     * 输出: 4
+     * 解释: 最长的上升子序列是 [2,3,7,101]，它的长度是 4。
+     */
+//    public static int lengthOfLIS(int[] nums) {
+//        int[] dp = new int[nums.length];
+//        int max = 0;
+//        for (int i=0;i<nums.length;i++){
+//            dp[i] = 1;
+//            for (int j=0;j<i;j++){
+//                if (nums[j]<nums[i]){
+//                    dp[i] = Math.max(dp[i],dp[j]+1);
+//                }
+//            }
+//            max = Math.max(max,dp[i]);
+//        }
+//        return max;
+//    }[5,9,6,5,7,4,8,2]
+    public static int lengthOfLIS(int[] nums) {
+        if(nums.length==0){
+            return 0;
+        }
+        int result=0;
+        int[] dp=new int[nums.length];
+        dp[0]=nums[0];
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]>dp[result]){
+                dp[++result]=nums[i];
+            }else{
+                int left=0;
+                int right=result;
+                while(left<right){
+                    int mid=(left+right)/2;
+                    if(nums[i]<=dp[mid]){
+                        right=mid;
+                    }else{
+                        left=mid+1;
+                    }
+                }
+                dp[right]=nums[i];
+            }
+        }
+        return result+1;
     }
 }

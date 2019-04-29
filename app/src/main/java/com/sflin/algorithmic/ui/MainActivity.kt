@@ -225,5 +225,6 @@ class MainActivity : AppCompatActivity() {
     private fun dp(){
         MediumDynamicProgrammingUtils.longestSubstring("abb",2)
         HardDynamicProgrammingUtils.longestConsecutive(intArrayOf(0,-1))
+        MediumDynamicProgrammingUtils.lengthOfLIS(intArrayOf(5,9,6,5,7,4,8,2))
     }
 }

@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity() {
         trie.insert("apple")
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun array() {
         EasyArrayUtils.majorityElement(intArrayOf(3, 2, 3))
 //        EasyArrayUtils.intersect(intArrayOf(1, 2), intArrayOf(1, 1))
@@ -147,6 +148,10 @@ class MainActivity : AppCompatActivity() {
 //        )
         MediumArrayUtils.productExceptSelf(intArrayOf(1, 2, 3, 4))
         MediumArrayUtils.kthSmallest(arrayOf(intArrayOf(1,5,9),intArrayOf(10,11,13),intArrayOf(12,13,15)),8)
+
+        for (one in MediumArrayUtils.continuousSum(intArrayOf(9,5,4,8,9,1),12)){
+            Log.e("test","${one}")
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -222,6 +227,7 @@ class MainActivity : AppCompatActivity() {
         randomizedSet.random
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun dp(){
         MediumDynamicProgrammingUtils.longestSubstring("abb",2)
         HardDynamicProgrammingUtils.longestConsecutive(intArrayOf(0,-1))

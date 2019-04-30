@@ -1,5 +1,11 @@
 package com.sflin.algorithmic.array;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by MagicFrost
  *
@@ -230,5 +236,92 @@ public class MediumArrayUtils {
 //        }
 //        Arrays.sort(arr);
 //        return arr[k];
+//    }
+
+    /**
+     * 和为K的子数组
+     *
+     * @param nums
+     * @param k
+     * @return
+     *
+     * 示例
+     * 输入:nums = [1,1,1], k = 2
+     * 输出: 2 , [1,1] 与 [1,1] 为两种不同的情况。
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public int subarraySum(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        int sum = 0, ret = 0;
+
+        for(int i = 0; i < nums.length; ++i) {
+            sum += nums[i];
+            if(map.containsKey(sum-k))
+                ret += map.get(sum-k);
+            map.put(sum, map.getOrDefault(sum, 0)+1);
+        }
+        return ret;
+    }
+
+    /**
+     * 和为K的子数组(衍生)
+     *
+     * 给出一个正整数数组和一个数，返回一个数组走那个连续元素的和等于所给数的子数组
+     *
+     * @param nums
+     * @param k
+     * @return
+     * 示例
+     * 输入:nums = [9,5,4,8,9,1], k = 17
+     * 输出: [5,4,8]
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static int[] continuousSum(int[] nums, int k){
+        /**
+         扫描一遍数组, 使用map记录出现同样的和的次数, 对每个i计算累计和sum并判断map内是否有sum-k
+         **/
+        Map<Integer, Integer> map = new HashMap<>();
+        int sum = 0, start = 0, end = 0;
+        for(int i = 0; i < nums.length; ++i) {
+            sum += nums[i];
+            end = i;
+            //sum-k 等价于  sum(end) - sum(start) = k
+            if(map.containsKey(sum-k)){
+                start = map.get(sum-k);
+                break;
+            }
+            map.put(sum, i);
+        }
+
+        int[] arr = new int[end - start];
+        for (int i=start;i<end;i++){
+            arr[i-start] = nums[i+1];
+        }
+        return arr;
+    }
+//    public static int[] continuousSum(int[] nums, int k){
+//        int sum = 0;
+//        List<Integer> list = new ArrayList<>();
+//        boolean isFind = false;
+//        for (int i=0;i<nums.length;i++){
+//            sum = 0;
+//            for (int j=i;j<nums.length;j++){
+//                sum +=nums[j];
+//                list.add(nums[j]);
+//                if (sum == k){
+//                    isFind = true;
+//                    break;
+//                }
+//            }
+//            if (isFind) break;
+//            list.clear();
+//        }
+//
+//        int[] arr = new int[list.size()];
+//        for (int i=0;i<list.size();i++){
+//            arr[i] = list.get(i);
+//        }
+//        return arr;
 //    }
 }

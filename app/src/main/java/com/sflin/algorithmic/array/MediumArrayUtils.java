@@ -276,22 +276,17 @@ public class MediumArrayUtils {
      * 输入:nums = [9,5,4,8,9,1], k = 17
      * 输出: [5,4,8]
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
     public static int[] continuousSum(int[] nums, int k){
-        /**
-         扫描一遍数组, 使用map记录出现同样的和的次数, 对每个i计算累计和sum并判断map内是否有sum-k
-         **/
-        Map<Integer, Integer> map = new HashMap<>();
         int sum = 0, start = 0, end = 0;
         for(int i = 0; i < nums.length; ++i) {
             sum += nums[i];
             end = i;
-            //sum-k 等价于  sum(end) - sum(start) = k
-            if(map.containsKey(sum-k)){
-                start = map.get(sum-k);
+            if(sum == k){
+                end = i;
                 break;
+            }else if (sum > k){
+                sum = sum - nums[start++];
             }
-            map.put(sum, i);
         }
 
         int[] arr = new int[end - start];
@@ -324,4 +319,17 @@ public class MediumArrayUtils {
 //        }
 //        return arr;
 //    }
+
+    public int test(int[] nums, int k){
+        int sum = 0, index = 0, result = 0;
+        for (int i=0;i<nums.length;i++){
+            sum +=nums[i];
+            if (sum == k){
+                result++;
+            }else if (sum > k){
+                sum = sum - nums[index++];
+            }
+        }
+        return result;
+    }
 }

@@ -232,5 +232,6 @@ class MainActivity : AppCompatActivity() {
         MediumDynamicProgrammingUtils.longestSubstring("abb",2)
         HardDynamicProgrammingUtils.longestConsecutive(intArrayOf(0,-1))
         MediumDynamicProgrammingUtils.lengthOfLIS(intArrayOf(5,9,6,5,7,4,8,2))
+        MediumDynamicProgrammingUtils.coinChange(intArrayOf(186,419,83,408),6249)
     }
 }

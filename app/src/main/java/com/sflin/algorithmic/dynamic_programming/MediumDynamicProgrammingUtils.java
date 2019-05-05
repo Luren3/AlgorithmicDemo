@@ -160,4 +160,32 @@ public class MediumDynamicProgrammingUtils {
         }
         return result+1;
     }
+
+    /**
+     * 零钱兑换
+     *
+     * @param coins
+     * @param amount
+     * @return
+     *
+     * 示例
+     * 输入: coins = [1, 2, 5], amount = 11
+     * 输出: 3
+     * 解释: 11 = 5 + 5 + 1
+     */
+    public static int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        for (int i=1;i<=amount;i++){
+            int min = Integer.MAX_VALUE;
+            for (int j=0;j<coins.length;j++){
+                int value = i-coins[j];
+                if (value>=0 && dp[value] != -1){
+                  min = Math.min(min,dp[value]+1);
+                }
+            }
+            min = min==Integer.MAX_VALUE ? -1 : min;
+            dp[i] = min;
+        }
+        return dp[amount];
+    }
 }

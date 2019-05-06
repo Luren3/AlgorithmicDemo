@@ -1,8 +1,5 @@
 package com.sflin.algorithmic.ui
 
-import android.content.pm.ActivityInfo.CONFIG_ORIENTATION
-import android.content.pm.ActivityInfo.CONFIG_SCREEN_SIZE
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
@@ -38,24 +35,11 @@ class MainActivity : AppCompatActivity() {
 
     private val listData = arrayListOf<String>()
 
-    private var mOldConfig: Configuration? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.sflin.algorithmic.R.layout.activity_main)
 
-        mOldConfig = Configuration(getResources().getConfiguration());
-
         init()
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        val diff = newConfig.diff(mOldConfig)
-        if (diff and (CONFIG_ORIENTATION or CONFIG_SCREEN_SIZE) != 0) {
-//            onHandleConfigChanged()
-        }
-        mOldConfig?.setTo(newConfig)
-        super.onConfigurationChanged(newConfig)
     }
 
     private fun init() {

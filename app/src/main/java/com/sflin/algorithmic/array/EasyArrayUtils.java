@@ -21,17 +21,28 @@ public class EasyArrayUtils {
      * 你不需要考虑数组中超出新长度后面的元素。
      */
     public static int removeDuplicates(int[] nums) {
-        List<Integer> list = new ArrayList<>();
-        for (int i =0;i < nums.length;i++){
-            if (!list.contains(nums[i])){
-                list.add(nums[i]);
+        if (nums.length == 0) return 0;
+        int i =  0;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[i] != nums[j]) {
+                i++;
+                nums[i] = nums[j];
             }
         }
-        for (int i = 0;i< list.size();i++){
-            nums[i] = list.get(i);
-        }
-        return list.size();
+        return i + 1;
     }
+//    public static int removeDuplicates(int[] nums) {
+//        List<Integer> list = new ArrayList<>();
+//        for (int i =0;i < nums.length;i++){
+//            if (!list.contains(nums[i])){
+//                list.add(nums[i]);
+//            }
+//        }
+//        for (int i = 0;i< list.size();i++){
+//            nums[i] = list.get(i);
+//        }
+//        return list.size();
+//    }
 
     /**
      * 买卖股票的最佳时机 II

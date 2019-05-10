@@ -127,20 +127,36 @@ public class EasyArrayUtils {
      * 向右旋转 3 步: [5,6,7,1,2,3,4]
      */
     public static void rotate(int[] nums, int k) {
-        if (k < 0) k =nums.length - Math.abs(k) % nums.length;
-        if (k > nums.length) k = k % nums.length;
-        Map<Integer,Integer> map = new HashMap<>();
-        for (int i=0;i<nums.length;i++){
-            map.put(i,nums[i]);
-        }
+        k = k % nums.length;
+        int[] numsCopy = nums.clone();
         for (int i=0;i<nums.length;i++){
             if (i < k){
-                nums[i] = map.get(nums.length - k + i);
+                nums[i] = numsCopy[nums.length - k + i];
             }else {
-                nums[i] = map.get(i - k);
+                nums[i] =  numsCopy[i - k];
             }
         }
     }
+//    public static void rotate(int[] nums, int k) {
+//        if (nums.length < 2 || k < 1 || k % nums.length == 0)
+//            return;
+//        if (k > nums.length)
+//            k = k % nums.length;
+//        //1,2,3,4,5,6,7
+//        reverse(nums, 0, nums.length - 1 - k);
+//        //4,3,2,1,5,6,7
+//        reverse(nums, nums.length - k, nums.length -1);
+//        //4,3,2,1,7,6,5
+//        reverse(nums, 0, nums.length - 1);
+//        //5,6,7,1,2,3,4
+//    }
+//    private static void reverse(int[] nums, int start, int end) {
+//        while (start < end) {
+//            int temp = nums[start];
+//            nums[start++] = nums[end];
+//            nums[end--] = temp;
+//        }
+//    }
 
     /**
      * 存在重复
@@ -153,15 +169,28 @@ public class EasyArrayUtils {
      * 输出: true
      */
     public static boolean containsDuplicate(int[] nums) {
-        Map<Integer,Integer> map = new HashMap<>();
-        for (int i :nums){
-            if (map.containsKey(i)){
+        if (nums.length == 0) return false;
+        Arrays.sort(nums);
+        int num = nums[0];
+        for (int i=1;i<nums.length;i++){
+            if (nums[i] != num){
+                num = nums[i];
+            }else {
                 return true;
             }
-            map.put(i,i);
         }
         return false;
     }
+//    public static boolean containsDuplicate(int[] nums) {
+//        Map<Integer,Integer> map = new HashMap<>();
+//        for (int i :nums){
+//            if (map.containsKey(i)){
+//                return true;
+//            }
+//            map.put(i,i);
+//        }
+//        return false;
+//    }
 
     /**
      * 只出现一次的数字

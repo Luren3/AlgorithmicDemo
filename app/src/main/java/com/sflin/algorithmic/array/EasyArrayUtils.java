@@ -159,7 +159,7 @@ public class EasyArrayUtils {
 //    }
 
     /**
-     * 存在重复
+     * 存在重复元素
      *
      * @param nums
      * @return
@@ -233,10 +233,6 @@ public class EasyArrayUtils {
      * 输出: [2,2]
      */
     public static int[] intersect(int[] nums1, int[] nums2) {
-
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-
         List<Integer> list = new ArrayList<>();
         List<Integer> numList = new ArrayList<>();
 

@@ -12,9 +12,9 @@ import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.dynamic_programming.MediumDynamicProgrammingUtils
 import com.sflin.algorithmic.hash.EasyHashUtils
 import com.sflin.algorithmic.hash.RandomizedSet
+import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.linkedList.MediumLinkedListUtils
-import com.sflin.algorithmic.linkedList.Node
 import com.sflin.algorithmic.stack.HardStackUtils
 import com.sflin.algorithmic.stack.MedianFinder
 import com.sflin.algorithmic.stack.MediumStackUtils
@@ -160,25 +160,26 @@ class MainActivity : AppCompatActivity() {
     private fun linkedList() {
         val listNode = ListNode(1)
         listNode.next = ListNode(2)
-        listNode.next.next = ListNode(3)
-        listNode.next.next.next = ListNode(4)
-        listNode.next.next.next.next = ListNode(5)
+        listNode.next.next = ListNode(1)
+        listNode.next.next.next = ListNode(2)
+        listNode.next.next.next.next = ListNode(1)
 
 //        val listNode2 = ListNode(1)
 //        listNode2.next = ListNode(3)
 //        listNode2.next.next = ListNode(5)
 //        EasyLinkedListUtils.mergeTwoLists(listNode, listNode2)
 //        EasyLinkedListUtils.hasCycle(listNode)
-        MediumLinkedListUtils.sortList(listNode)
-        val node = Node()
-        node.`val` = 1
-        node.next = Node().apply {
-            `val` = 2
-            random = Node()
-        }
-        node.random = Node()
-        MediumLinkedListUtils.copyRandomList(node)
+//        MediumLinkedListUtils.sortList(listNode)
+//        val node = Node()
+//        node.`val` = 1
+//        node.next = Node().apply {
+//            `val` = 2
+//            random = Node()
+//        }
+//        node.random = Node()
+//        MediumLinkedListUtils.copyRandomList(node)
         MediumLinkedListUtils.oddEvenList(listNode)
+        EasyLinkedListUtils.isPalindrome(listNode)
     }
 
     private fun tree() {

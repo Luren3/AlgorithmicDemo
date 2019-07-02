@@ -63,7 +63,6 @@ public class EasyLinkedListUtils {
 //        return newNode;
 //    }
 
-
     /**
      * 合并两个有序链表
      *
@@ -147,32 +146,32 @@ public class EasyLinkedListUtils {
         if (head == null || head.next == null) {
             return true;
         }
-
-        if (head.next.next == null) {
-            return head.val == head.next.val;
-        }
-
-        ListNode fast = head.next;
-        ListNode slow = head;
-
-        while (fast.next != null) {
-            // 不停的从slow的后一个开始遍历，知道找到值相同的节点
-            // 一次完成后，再移动到原节点的下一个节点开始，继续重复上面的步骤
-            if (fast.next.val == slow.val) {
-                if (fast.next.next != null) {
-                    return false;
-                }
-                fast.next = null;
-                slow = slow.next;
-                fast = slow.next;
-                if (fast == null || fast.val == slow.val) {
-                    return true;
-                }
-            } else {
-                fast = fast.next;
+        // 找到链表的中点
+        ListNode mid = findMid(head);
+        // 翻转中点后的链表
+        mid = reverseList(mid);
+        // 比较两段链表
+        while (mid != null) {
+            if (head.val != mid.val) {
+                return false;
             }
+            head = head.next;
+            mid = mid.next;
         }
-        return false;
+        return true;
+    }
+    // 找到链表的中间节点
+    private static ListNode findMid(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 //    public static boolean isPalindrome(ListNode head) {
 //        List<Integer> list = new ArrayList<>();

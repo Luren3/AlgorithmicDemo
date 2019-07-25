@@ -104,6 +104,8 @@ class MainActivity : AppCompatActivity() {
 
         val trie = Trie();
         trie.insert("apple")
+
+        MediumStringUtils.simplifyPath("/home/")
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -136,6 +138,8 @@ class MainActivity : AppCompatActivity() {
         for (one in MediumArrayUtils.continuousSum(intArrayOf(9,5,4,8,9,1),12)){
             Log.e("test","${one}")
         }
+
+        MediumArrayUtils.search(intArrayOf(4,5,6,7,0,1,2),0)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

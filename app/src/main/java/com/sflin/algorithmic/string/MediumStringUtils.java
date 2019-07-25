@@ -156,4 +156,47 @@ public class MediumStringUtils {
         }
         return result;
     }
+
+    /**
+     * 简化路径
+     *
+     * @param path
+     * @return
+     *
+     * 输入："/a//b////c/d//././/.."
+     * 输出："/a/b/c"
+     */
+    public static String simplifyPath(String path) {
+
+        String[] strings = path.split("/");
+
+        List<String> list = new ArrayList<>();
+
+        for (String str : strings) {
+            switch (str) {
+                case ".":
+                case "":
+                    break;
+                case "..":
+                    if (list.size() != 0) {
+                        list.remove(list.size() - 1);
+                    }
+                    break;
+                default:
+                    list.add(str);
+                    break;
+            }
+        }
+
+        StringBuffer sb = new StringBuffer();
+
+        for (String str : list) {
+            sb.append("/");
+            sb.append(str);
+        }
+        if (sb.length() == 0) {
+            sb.append("/");
+        }
+        return sb.toString();
+    }
 }

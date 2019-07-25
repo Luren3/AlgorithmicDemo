@@ -320,16 +320,46 @@ public class MediumArrayUtils {
 //        return arr;
 //    }
 
-    public int test(int[] nums, int k){
-        int sum = 0, index = 0, result = 0;
-        for (int i=0;i<nums.length;i++){
-            sum +=nums[i];
-            if (sum == k){
-                result++;
-            }else if (sum > k){
-                sum = sum - nums[index++];
-            }
+    /**
+     * 搜索旋转排序数组
+     *
+     * @param nums
+     * @param target
+     * @return
+     *
+     * 示例
+     * 输入: nums = [4,5,6,7,0,1,2], target = 3
+     * 输出: -1
+     */
+    public static int search(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
         }
-        return result;
+        return search(nums, target, 0, nums.length - 1);
+    }
+
+    private static int search(int[] nums, int target, int left, int right) {
+        if (left == right) {
+            return nums[left] == target ? left : -1;
+        }
+        int pos = (left + right) / 2;
+        if (nums[pos] == target) {
+            return pos;
+        } else  {
+            if (nums[left] < nums[pos]) { //左边有序
+                if (nums[left] <= target && pos - 1 >= left && nums[pos - 1] >= target) {
+                    return search(nums, target, left, pos - 1);
+                } else {
+                    return pos+1<=right?search(nums, target, pos + 1, right):-1;
+                }
+            } else { //右边有序
+                if (nums[right] >= target && pos + 1 <= right && nums[pos + 1] <=  target) {
+                    return search(nums, target, pos+1, right);
+                } else {
+                    return left<=pos-1?search(nums, target, left, pos - 1):-1;
+                }
+            }
+
+        }
     }
 }

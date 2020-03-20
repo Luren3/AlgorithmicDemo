@@ -1,10 +1,14 @@
 package com.sflin.algorithmic.array;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by MagicFrost
- *
+ * <p>
  * 简单数组算法
  */
 public class EasyArrayUtils {
@@ -13,16 +17,14 @@ public class EasyArrayUtils {
      * 从排序数组中删除重复项
      *
      * @param nums
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 给定数组 nums = [1,1,2],
      * 函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。
      * 你不需要考虑数组中超出新长度后面的元素。
      */
     public static int removeDuplicates(int[] nums) {
         if (nums.length == 0) return 0;
-        int i =  0;
+        int i = 0;
         for (int j = 1; j < nums.length; j++) {
             if (nums[i] != nums[j]) {
                 i++;
@@ -49,12 +51,12 @@ public class EasyArrayUtils {
      *
      * @param prices
      * @return 最大收益
-     *
+     * <p>
      * 示例
      * 输入: [7,1,5,3,6,4]
      * 输出: 7
      * 解释: 在第 2 天（股票价格 = 1）的时候买入，在第 3 天（股票价格 = 5）的时候卖出, 这笔交易所能获得利润 = 5-1 = 4 。
-     *      随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。
+     * 随后，在第 4 天（股票价格 = 3）的时候买入，在第 5 天（股票价格 = 6）的时候卖出, 这笔交易所能获得利润 = 6-3 = 3 。
      */
     public static int maxProfit(int[] prices) {
         int value = 0;
@@ -116,24 +118,22 @@ public class EasyArrayUtils {
      * 旋转数组
      *
      * @param nums
-     * @param k
-     *
-     * 示例
-     * 输入: [1,2,3,4,5,6,7] 和 k = 3
-     * 输出: [5,6,7,1,2,3,4]
-     * 解释:
-     * 向右旋转 1 步: [7,1,2,3,4,5,6]
-     * 向右旋转 2 步: [6,7,1,2,3,4,5]
-     * 向右旋转 3 步: [5,6,7,1,2,3,4]
+     * @param k    示例
+     *             输入: [1,2,3,4,5,6,7] 和 k = 3
+     *             输出: [5,6,7,1,2,3,4]
+     *             解释:
+     *             向右旋转 1 步: [7,1,2,3,4,5,6]
+     *             向右旋转 2 步: [6,7,1,2,3,4,5]
+     *             向右旋转 3 步: [5,6,7,1,2,3,4]
      */
     public static void rotate(int[] nums, int k) {
         k = k % nums.length;
         int[] numsCopy = nums.clone();
-        for (int i=0;i<nums.length;i++){
-            if (i < k){
+        for (int i = 0; i < nums.length; i++) {
+            if (i < k) {
                 nums[i] = numsCopy[nums.length - k + i];
-            }else {
-                nums[i] =  numsCopy[i - k];
+            } else {
+                nums[i] = numsCopy[i - k];
             }
         }
     }
@@ -162,9 +162,7 @@ public class EasyArrayUtils {
      * 存在重复元素
      *
      * @param nums
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入: [1,2,3,1]
      * 输出: true
      */
@@ -172,10 +170,10 @@ public class EasyArrayUtils {
         if (nums.length == 0) return false;
         Arrays.sort(nums);
         int num = nums[0];
-        for (int i=1;i<nums.length;i++){
-            if (nums[i] != num){
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != num) {
                 num = nums[i];
-            }else {
+            } else {
                 return true;
             }
         }
@@ -196,15 +194,13 @@ public class EasyArrayUtils {
      * 只出现一次的数字
      *
      * @param nums
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入: [2,2,1]
      * 输出: 1
      */
     public static int singleNumber(int[] nums) {
         int result = nums[0];
-        for (int i=1;i<nums.length;i++){
+        for (int i = 1; i < nums.length; i++) {
             result ^= nums[i];
         }
         return result;
@@ -226,9 +222,7 @@ public class EasyArrayUtils {
      *
      * @param nums1
      * @param nums2
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入: nums1 = [1,2,2,1], nums2 = [2,2]
      * 输出: [2,2]
      */
@@ -236,19 +230,19 @@ public class EasyArrayUtils {
         List<Integer> list = new ArrayList<>();
         List<Integer> numList = new ArrayList<>();
 
-        for (int num:(nums1.length>=nums2.length?nums1:nums2)){
+        for (int num : (nums1.length >= nums2.length ? nums1 : nums2)) {
             numList.add(num);
         }
 
-        for (int num:(nums1.length<nums2.length?nums1:nums2)){
-            if (numList.contains(num)){
+        for (int num : (nums1.length < nums2.length ? nums1 : nums2)) {
+            if (numList.contains(num)) {
                 list.add(num);
                 numList.remove(numList.indexOf(num));
             }
         }
 
         int[] nums = new int[list.size()];
-        for (int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             nums[i] = list.get(i);
         }
         return nums;
@@ -258,9 +252,7 @@ public class EasyArrayUtils {
      * 加一
      *
      * @param digits
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入: [1,2,3]
      * 输出: [1,2,4]
      * 解释: 输入数组表示数字 123。
@@ -268,17 +260,17 @@ public class EasyArrayUtils {
      */
     public static int[] plusOne(int[] digits) {
 
-        for (int i = digits.length -1;i >= 0;i --){
+        for (int i = digits.length - 1; i >= 0; i--) {
             int number = digits[i] + 1;
 
-            if (number == 10){
+            if (number == 10) {
                 digits[i] = 0;
-                if (i == 0){
+                if (i == 0) {
                     int[] newArr = new int[digits.length + 1];
                     newArr[0] = 1;
                     return newArr;
                 }
-            }else {
+            } else {
                 digits[i] = number;
                 break;
             }
@@ -290,24 +282,22 @@ public class EasyArrayUtils {
     /**
      * 移动零
      *
-     * @param nums
-     *
-     * 示例
-     * 输入: [1,0,0,3,12]
-     * 输出: [1,3,12,0,0]
-     *
-     * 说明:
-     * 必须在原数组上操作，不能拷贝额外的数组。
-     * 尽量减少操作次数。
+     * @param nums 示例
+     *             输入: [1,0,0,3,12]
+     *             输出: [1,3,12,0,0]
+     *             <p>
+     *             说明:
+     *             必须在原数组上操作，不能拷贝额外的数组。
+     *             尽量减少操作次数。
      */
     public static void moveZeroes(int[] nums) {
         int j = 0;
-        for(int i = 0; i<nums.length; i++){
-            if(nums[i]!= 0){
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
                 nums[j++] = nums[i];
             }
         }
-        while(j < nums.length){
+        while (j < nums.length) {
             nums[j] = 0;
             j++;
         }
@@ -337,23 +327,21 @@ public class EasyArrayUtils {
      *
      * @param nums
      * @param target
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 给定 nums = [2, 7, 11, 15], target = 9
-     *
+     * <p>
      * 因为 nums[0] + nums[1] = 2 + 7 = 9
      * 所以返回 [0, 1]
      */
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer,Integer> map = new HashMap<>();
-        for (int i = 0;i < nums.length;i ++){
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
             int value = target - nums[i];
 
-            if (map.containsKey(value)){
-                return new int[]{map.get(value),i};
+            if (map.containsKey(value)) {
+                return new int[]{map.get(value), i};
             }
-            map.put(nums[i],i);
+            map.put(nums[i], i);
         }
         return null;
     }
@@ -375,81 +363,78 @@ public class EasyArrayUtils {
      * 有效的数独
      *
      * @param board
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入:
      * [
-     *   ["5","3",".",".","7",".",".",".","."],
-     *   ["6",".",".","1","9","5",".",".","."],
-     *   [".","9","8",".",".",".",".","6","."],
-     *   ["8",".",".",".","6",".",".",".","3"],
-     *   ["4",".",".","8",".","3",".",".","1"],
-     *   ["7",".",".",".","2",".",".",".","6"],
-     *   [".","6",".",".",".",".","2","8","."],
-     *   [".",".",".","4","1","9",".",".","5"],
-     *   [".",".",".",".","8",".",".","7","9"]
+     * ["5","3",".",".","7",".",".",".","."],
+     * ["6",".",".","1","9","5",".",".","."],
+     * [".","9","8",".",".",".",".","6","."],
+     * ["8",".",".",".","6",".",".",".","3"],
+     * ["4",".",".","8",".","3",".",".","1"],
+     * ["7",".",".",".","2",".",".",".","6"],
+     * [".","6",".",".",".",".","2","8","."],
+     * [".",".",".","4","1","9",".",".","5"],
+     * [".",".",".",".","8",".",".","7","9"]
      * ]
      * 输出: true
      */
     public boolean isValidSudoku(char[][] board) {
-        Map<Integer,Map<Character,Character>> rowMap = new HashMap<>();
-        Map<Integer,Map<Character,Character>> colMap = new HashMap<>();
-        Map<Integer,Map<Character,Character>> blockMap = new HashMap<>();
+        Map<Integer, Map<Character, Character>> rowMap = new HashMap<>();
+        Map<Integer, Map<Character, Character>> colMap = new HashMap<>();
+        Map<Integer, Map<Character, Character>> blockMap = new HashMap<>();
 
-        for (int i = 0;i < 9;i ++){
-            for (int j = 0;j < 9;j ++){
-                if (board[i][j] != '.'){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
                     char num = board[i][j];
                     if ((rowMap.get(i) != null && rowMap.get(i).containsKey(num))
                             || (colMap.get(j) != null && colMap.get(j).containsKey(num))
-                            || (blockMap.get(i / 3 * 3 + j / 3) != null && blockMap.get(i / 3 * 3 + j / 3).containsKey(num))){
+                            || (blockMap.get(i / 3 * 3 + j / 3) != null && blockMap.get(i / 3 * 3 + j / 3).containsKey(num))) {
                         return false;
-                    }else {
-                        addValue(rowMap,i,num);
-                        addValue(colMap,j,num);
-                        addValue(blockMap,i / 3 * 3 + j / 3,num);
+                    } else {
+                        addValue(rowMap, i, num);
+                        addValue(colMap, j, num);
+                        addValue(blockMap, i / 3 * 3 + j / 3, num);
                     }
                 }
             }
         }
         return true;
     }
-    private void addValue(Map<Integer,Map<Character,Character>> map,int index,char num){
-        if (map.get(index) == null){
-            Map<Character,Character> newMap = new HashMap<>();
-            newMap.put(num,num);
-            map.put(index,newMap);
-        }else {
-            map.get(index).put(num,num);
+
+    private void addValue(Map<Integer, Map<Character, Character>> map, int index, char num) {
+        if (map.get(index) == null) {
+            Map<Character, Character> newMap = new HashMap<>();
+            newMap.put(num, num);
+            map.put(index, newMap);
+        } else {
+            map.get(index).put(num, num);
         }
     }
 
     /**
      * 旋转图像
      *
-     * @param matrix
-     *
-     * 示例
-     * 给定 matrix =
-     * [
-     *   [1,2,3],
-     *   [4,5,6],
-     *   [7,8,9]
-     * ],
-     *
-     * 原地旋转输入矩阵，使其变为:
-     * [
-     *   [7,4,1],
-     *   [8,5,2],
-     *   [9,6,3]
-     * ]
+     * @param matrix 示例
+     *               给定 matrix =
+     *               [
+     *               [1,2,3],
+     *               [4,5,6],
+     *               [7,8,9]
+     *               ],
+     *               <p>
+     *               原地旋转输入矩阵，使其变为:
+     *               [
+     *               [7,4,1],
+     *               [8,5,2],
+     *               [9,6,3]
+     *               ]
      */
     public static void rotate(int[][] matrix) {
-        for(int i = 0;i < matrix.length / 2;i ++){
+        for (int i = 0; i < matrix.length / 2; i++) {
             int start = i;
             int end = matrix.length - 1 - i;
-            for (int j = 0;j < end - start;j ++){
+            for (int j = 0; j < end - start; j++) {
                 int temp = matrix[start][start + j];
                 matrix[start][start + j] = matrix[end - j][start];
                 matrix[end - j][start] = matrix[end][end - j];
@@ -482,22 +467,20 @@ public class EasyArrayUtils {
      * 求众数
      *
      * @param nums
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入: [3,2,3]
      * 输出: 3
      */
     public static int majorityElement(int[] nums) {
         int num = nums[0];
         int index = 1;
-        for (int i = 1;i<nums.length;i++){
-            if (num == nums[i]){
+        for (int i = 1; i < nums.length; i++) {
+            if (num == nums[i]) {
                 index++;
-            }else {
+            } else {
                 index--;
-                if (index == 0 && i < nums.length -1){
-                    num = nums[i+1];
+                if (index == 0 && i < nums.length - 1) {
+                    num = nums[i + 1];
                 }
             }
         }
@@ -525,4 +508,24 @@ public class EasyArrayUtils {
 //        }
 //        return num;
 //    }
+
+    /**
+     * 40. 最小的k个数
+     * @param arr
+     * @param k
+     * @return
+     *
+     * 示例
+     * 输入：arr = [3,2,1], k = 2
+     * 输出：[1,2] 或者 [2,1]
+     */
+    public static int[] getLeastNumbers(int[] arr, int k) {
+        int[] newArr = new int[k];
+
+        Arrays.sort(arr);
+        for (int i = 0; i < k; i++) {
+            newArr[i] = arr[i];
+        }
+        return newArr;
+    }
 }

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.sflin.algorithmic.array.EasyArrayUtils
+import com.sflin.algorithmic.array.HardArrayUtils
 import com.sflin.algorithmic.array.MediumArrayUtils
 import com.sflin.algorithmic.dynamic_programming.HardDynamicProgrammingUtils
 import com.sflin.algorithmic.dynamic_programming.MediumDynamicProgrammingUtils
@@ -93,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun string() {
 //        EasyStringUtils.isPalindrome("A man, a plan, a canal: Panama")
 //        EasyStringUtils.myAtoi("+-2")
@@ -106,6 +108,11 @@ class MainActivity : AppCompatActivity() {
         trie.insert("apple")
 
         MediumStringUtils.simplifyPath("/home/")
+
+        MediumStringUtils.splitLoopedString(arrayOf("abc","xyz"))
+
+        MediumStringUtils.isSubsequence("abc","ahbgdc")
+        EasyStringUtils.longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth")
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -135,11 +142,15 @@ class MainActivity : AppCompatActivity() {
         MediumArrayUtils.productExceptSelf(intArrayOf(1, 2, 3, 4))
         MediumArrayUtils.kthSmallest(arrayOf(intArrayOf(1,5,9),intArrayOf(10,11,13),intArrayOf(12,13,15)),8)
 
-        for (one in MediumArrayUtils.continuousSum(intArrayOf(9,5,4,8,9,1),12)){
+        for (one in MediumArrayUtils.continuousSum(intArrayOf(9,5,2,10,9,1),17)){
             Log.e("test","${one}")
         }
 
         MediumArrayUtils.search(intArrayOf(4,5,6,7,0,1,2),0)
+        MediumArrayUtils.permuteUnique(intArrayOf(1,1,2))
+        HardArrayUtils.jump(intArrayOf(10,9,8,7,6,5,4,3,2,1,1,0))
+        MediumArrayUtils.stoneGame(intArrayOf(5,3,4,5))
+        MediumArrayUtils.sumSubarrayMins(intArrayOf(3,1,2,4))
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

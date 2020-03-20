@@ -335,4 +335,58 @@ public class EasyStringUtils {
 //
 //        return str;
 //    }
+
+
+    /**
+     * 409. 最长回文串
+     *
+     * @param s
+     * @return
+     *
+     * 示例
+     * 输入:
+     * "abccccdd"
+     *
+     * 输出:
+     * 7
+     *
+     * 解释:
+     * 我们可以构造的最长的回文串是"dccaccd", 它的长度是 7。
+     */
+    public int longestPalindrome(String s) {
+        if (s == null) return 0;
+
+        int[] f = new int[75];
+        for (char ch : s.toCharArray()) {
+            f[ch - '0']++;
+        }
+        int res = 0, odd = 0;
+        for (int num : f) {
+            if (num == 0) continue;
+            res += num / 2 * 2;
+
+            if (num % 2 == 1) {
+                odd = 1;
+            }
+        }
+        res += odd;
+        return res;
+    }
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    public static int longestPalindrome(String s) {
+//        //字符个数偶数可以组成，如果有奇数取最长个数字符，其他剔除一个
+//        Map<Character,Integer> map = new HashMap<>();
+//        for (int i = 0; i < s.length(); i++) {
+//            char c = s.charAt(i);
+//            map.put(c,map.getOrDefault(c,0)+1);
+//        }
+//        int result = 0,odd = 0;
+//        for (Integer integer:map.values()) {
+//            result += integer / 2 * 2;
+//            if (integer % 2 == 1){
+//                odd = 1;
+//            }
+//        }
+//        return result + odd;
+//    }
 }

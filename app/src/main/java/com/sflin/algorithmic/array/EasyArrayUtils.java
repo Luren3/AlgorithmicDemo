@@ -294,14 +294,26 @@ public class EasyArrayUtils {
         int j = 0;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] != 0) {
-                nums[j++] = nums[i];
+                nums[j] = nums[i];
+                if (j < i) {
+                    nums[i] = 0;
+                }
+                j++;
             }
         }
-        while (j < nums.length) {
-            nums[j] = 0;
-            j++;
-        }
     }
+//    public static void moveZeroes(int[] nums) {
+//        int j = 0;
+//        for (int i = 0; i < nums.length; i++) {
+//            if (nums[i] != 0) {
+//                nums[j++] = nums[i];
+//            }
+//        }
+//        while (j < nums.length) {
+//            nums[j] = 0;
+//            j++;
+//        }
+//    }
 //    public static void moveZeroes(int[] nums) {
 //        int index = 0;
 //        for(int i = 0;i < nums.length;i ++){
@@ -323,7 +335,7 @@ public class EasyArrayUtils {
 //    }
 
     /**
-     * 两数之和
+     * 1.两数之和
      *
      * @param nums
      * @param target
@@ -511,11 +523,10 @@ public class EasyArrayUtils {
 
     /**
      * 40. 最小的k个数
+     *
      * @param arr
      * @param k
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入：arr = [3,2,1], k = 2
      * 输出：[1,2] 或者 [2,1]
      */
@@ -528,4 +539,13 @@ public class EasyArrayUtils {
         }
         return newArr;
     }
+//    public static int[] getLeastNumbers(int[] arr, int k) {
+//        int[] newArr = new int[k];
+//
+//        Arrays.sort(arr);
+//        for (int i = 0; i < k; i++) {
+//            newArr[i] = arr[i];
+//        }
+//        return newArr;
+//    }
 }

@@ -28,6 +28,8 @@ import com.sflin.algorithmic.tree.HardTreeUtils
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         listData.add("数学")
         listData.add("动态规划")
         listData.add("哈希与映射")
+        listData.add("其他")
 
         adapter = ListAdapter(listData)
         adapter!!.setOnClickListener(object : ListAdapter.OnCallBack {
@@ -90,6 +93,9 @@ class MainActivity : AppCompatActivity() {
             }
             "哈希与映射" ->{
                 hash()
+            }
+            "其他" ->{
+                other()
             }
         }
     }
@@ -151,6 +157,8 @@ class MainActivity : AppCompatActivity() {
         HardArrayUtils.jump(intArrayOf(10,9,8,7,6,5,4,3,2,1,1,0))
         MediumArrayUtils.stoneGame(intArrayOf(5,3,4,5))
         MediumArrayUtils.sumSubarrayMins(intArrayOf(3,1,2,4))
+
+        HardArrayUtils.trap(intArrayOf(2,0,2))
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -233,5 +241,9 @@ class MainActivity : AppCompatActivity() {
         HardDynamicProgrammingUtils.longestConsecutive(intArrayOf(0,-1))
         MediumDynamicProgrammingUtils.lengthOfLIS(intArrayOf(5,9,6,5,7,4,8,2))
         MediumDynamicProgrammingUtils.coinChange(intArrayOf(186,419,83,408),6249)
+    }
+
+    private fun other() {
+
     }
 }

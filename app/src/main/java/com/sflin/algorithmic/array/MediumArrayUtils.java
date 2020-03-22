@@ -4,6 +4,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -507,5 +508,90 @@ public class MediumArrayUtils {
                 map.put(sum, i);
         }
         return false;
+    }
+
+    /**
+     * 11. 盛最多水的容器
+     *
+     * 给你 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，
+     * 垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
+     *
+     * 说明：你不能倾斜容器，且 n 的值至少为 2。
+     *
+     * @param height
+     * @return
+     *
+     * 示例
+     *
+     * 输入：[1,8,6,2,5,4,8,3,7]
+     * 输出：49
+     */
+    public static int maxArea(int[] height) {
+        int max = 0,left = 0 ,right = height.length - 1;
+
+        while (left < right){
+            max = Math.max(max, Math.min(height[left], height[right]) * (right - left));
+            if (height[left] < height[right])
+                left++;
+            else
+                right--;
+        }
+        return max;
+    }
+//    public static int maxArea(int[] height) {
+//        int max = 0;
+//        for (int i=0;i<height.length - 1;i++){
+//            for (int j= i + 1;j<height.length;j++) {
+//                int area = (j - i) * Math.min(height[i],height[j]);
+//                max = Math.max(max,area);
+//            }
+//        }
+//        return max;
+//    }
+
+    /**
+     * 15. 三数之和
+     *
+     * 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
+     *
+     * 注意：答案中不可以包含重复的三元组。
+     *
+     * @param nums
+     * @return
+     *
+     * 示例
+     * 给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+     *
+     * 满足要求的三元组集合为：
+     * [
+     *   [-1, 0, 1],
+     *   [-1, -1, 2]
+     * ]
+     */
+    public List<List<Integer>> threeSum(int[] nums) {
+
+        List<List<Integer>> ans = new ArrayList();
+        int len = nums.length;
+        if(nums == null || len < 3) return ans;
+        Arrays.sort(nums); // 排序
+        for (int i = 0; i < len ; i++) {
+            if(nums[i] > 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
+            if(i > 0 && nums[i] == nums[i-1]) continue; // 去重
+            int L = i+1;
+            int R = len-1;
+            while(L < R){
+                int sum = nums[i] + nums[L] + nums[R];
+                if(sum == 0){
+                    ans.add(Arrays.asList(nums[i],nums[L],nums[R]));
+                    while (L<R && nums[L] == nums[L+1]) L++; // 去重
+                    while (L<R && nums[R] == nums[R-1]) R--; // 去重
+                    L++;
+                    R--;
+                }
+                else if (sum < 0) L++;
+                else if (sum > 0) R--;
+            }
+        }
+        return ans;
     }
 }

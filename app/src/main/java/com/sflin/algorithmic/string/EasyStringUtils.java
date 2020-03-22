@@ -353,7 +353,7 @@ public class EasyStringUtils {
      * 解释:
      * 我们可以构造的最长的回文串是"dccaccd", 它的长度是 7。
      */
-    public int longestPalindrome(String s) {
+    public static int longestPalindrome(String s) {
         if (s == null) return 0;
 
         int[] f = new int[75];

@@ -16,6 +16,7 @@ import com.sflin.algorithmic.hash.RandomizedSet
 import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.linkedList.MediumLinkedListUtils
+import com.sflin.algorithmic.other.EasyOtherUtils
 import com.sflin.algorithmic.stack.HardStackUtils
 import com.sflin.algorithmic.stack.MedianFinder
 import com.sflin.algorithmic.stack.MediumStackUtils
@@ -28,8 +29,6 @@ import com.sflin.algorithmic.tree.HardTreeUtils
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -244,6 +243,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun other() {
-
+//        val arr = arrayOf(intArrayOf(2))
+        val arr = arrayOf(intArrayOf(1, 2), intArrayOf(3, 4))
+        EasyOtherUtils.surfaceArea(arr)
     }
 }

@@ -147,7 +147,7 @@ public class EasyLinkedListUtils {
             return true;
         }
         // 找到链表的中点
-        ListNode mid = findMid(head);
+        ListNode mid = middleNode(head);
         // 翻转中点后的链表
         mid = reverseList(mid);
         // 比较两段链表
@@ -257,7 +257,7 @@ public class EasyLinkedListUtils {
      * 输出：此列表中的结点 4 (序列化形式：[4,5,6])
      * 由于该列表有两个中间结点，值分别为 3 和 4，我们返回第二个结点。
      */
-    public ListNode middleNode(ListNode head) {
+    public static ListNode middleNode(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -269,5 +269,4 @@ public class EasyLinkedListUtils {
         }
         return slow;
     }
-
 }

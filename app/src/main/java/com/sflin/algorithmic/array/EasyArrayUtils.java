@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
 
 /**
  * Created by MagicFrost
@@ -531,13 +532,16 @@ public class EasyArrayUtils {
      * 输出：[1,2] 或者 [2,1]
      */
     public static int[] getLeastNumbers(int[] arr, int k) {
-        int[] newArr = new int[k];
-
-        Arrays.sort(arr);
-        for (int i = 0; i < k; i++) {
-            newArr[i] = arr[i];
+        //默认小顶堆实现
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        for (int i = 0; i < arr.length;i++) {
+            heap.add(arr[i]);
         }
-        return newArr;
+        int[] ans = new int[k];
+        for (int i = 0; i < k; i++) {
+            ans[i] = heap.poll();
+        }
+        return ans;
     }
 //    public static int[] getLeastNumbers(int[] arr, int k) {
 //        int[] newArr = new int[k];

@@ -17,6 +17,7 @@ import com.sflin.algorithmic.linkedList.EasyLinkedListUtils
 import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.linkedList.MediumLinkedListUtils
 import com.sflin.algorithmic.other.EasyOtherUtils
+import com.sflin.algorithmic.other.MediumOtherUtils
 import com.sflin.algorithmic.stack.HardStackUtils
 import com.sflin.algorithmic.stack.MedianFinder
 import com.sflin.algorithmic.stack.MediumStackUtils
@@ -26,6 +27,7 @@ import com.sflin.algorithmic.string.MediumStringUtils
 import com.sflin.algorithmic.string.Trie
 import com.sflin.algorithmic.tree.Codec
 import com.sflin.algorithmic.tree.HardTreeUtils
+import com.sflin.algorithmic.tree.MediumTreeUtils
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -158,6 +160,7 @@ class MainActivity : AppCompatActivity() {
         MediumArrayUtils.sumSubarrayMins(intArrayOf(3,1,2,4))
 
         HardArrayUtils.trap(intArrayOf(2,0,2))
+        MediumArrayUtils.permute(intArrayOf(1,2,3))
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -246,5 +249,6 @@ class MainActivity : AppCompatActivity() {
 //        val arr = arrayOf(intArrayOf(2))
         val arr = arrayOf(intArrayOf(1, 2), intArrayOf(3, 4))
         EasyOtherUtils.surfaceArea(arr)
+        MediumOtherUtils.generateParenthesis(3)
     }
 }

@@ -271,7 +271,7 @@ public class MediumArrayUtils {
         for (int i = 0; i < nums.length; ++i) {
             sum += nums[i];
 
-            if (sum > k){
+            if (sum > k) {
                 sum = sum - nums[start++];
             }
             if (sum == k) {
@@ -350,54 +350,6 @@ public class MediumArrayUtils {
             }
 
         }
-    }
-
-    /**
-     * 全排列 II
-     *
-     * @param nums
-     * @return 示例
-     * <p>
-     * 输入: [1,1,2]
-     * 输出:
-     * [
-     * [1,1,2],
-     * [1,2,1],
-     * [2,1,1]
-     * ]
-     */
-    public static List<List<Integer>> permuteUnique(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (nums == null || nums.length == 0) {
-            return null;
-        }
-        permuteHelper(result, nums, 0);
-        return result;
-    }
-
-    private static void permuteHelper(List<List<Integer>> result, int[] nums, int index) {
-        if (index == nums.length - 1) {
-            List<Integer> list = new ArrayList<>();
-            for (int k = 0; k < nums.length; k++) {
-                list.add(nums[k]);
-            }
-            if (!result.contains(list)) {
-                result.add(list);
-            }
-            return;
-        } else {
-            for (int i = index; i < nums.length; i++) {
-                swap(nums, index, i);
-                permuteHelper(result, nums, index + 1);
-                swap(nums, index, i);
-            }
-        }
-    }
-
-    private static void swap(int[] nums, int i, int j) {
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
     }
 
     /**
@@ -487,15 +439,13 @@ public class MediumArrayUtils {
      *
      * @param nums
      * @param k
-     * @return
-     *
-     * 输入: [23,2,6,4,7], k = 6
+     * @return 输入: [23,2,6,4,7], k = 6
      * 输出: True
      * 解释: [23,2,6,4,7]是大小为 5 的子数组，并且和为 42。
      */
     public static boolean checkSubarraySum(int[] nums, int k) {
         int sum = 0;
-        HashMap < Integer, Integer > map = new HashMap < > ();
+        HashMap<Integer, Integer> map = new HashMap<>();
         map.put(0, -1);
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];
@@ -512,24 +462,22 @@ public class MediumArrayUtils {
 
     /**
      * 11. 盛最多水的容器
-     *
+     * <p>
      * 给你 n 个非负整数 a1，a2，...，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，
      * 垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
-     *
+     * <p>
      * 说明：你不能倾斜容器，且 n 的值至少为 2。
      *
      * @param height
-     * @return
-     *
-     * 示例
-     *
+     * @return 示例
+     * <p>
      * 输入：[1,8,6,2,5,4,8,3,7]
      * 输出：49
      */
     public static int maxArea(int[] height) {
-        int max = 0,left = 0 ,right = height.length - 1;
+        int max = 0, left = 0, right = height.length - 1;
 
-        while (left < right){
+        while (left < right) {
             max = Math.max(max, Math.min(height[left], height[right]) * (right - left));
             if (height[left] < height[right])
                 left++;
@@ -551,47 +499,227 @@ public class MediumArrayUtils {
 
     /**
      * 15. 三数之和
-     *
+     * <p>
      * 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
-     *
+     * <p>
      * 注意：答案中不可以包含重复的三元组。
      *
      * @param nums
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 给定数组 nums = [-1, 0, 1, 2, -1, -4]，
-     *
+     * <p>
      * 满足要求的三元组集合为：
      * [
-     *   [-1, 0, 1],
-     *   [-1, -1, 2]
+     * [-1, 0, 1],
+     * [-1, -1, 2]
      * ]
      */
     public List<List<Integer>> threeSum(int[] nums) {
 
         List<List<Integer>> ans = new ArrayList();
         int len = nums.length;
-        if(nums == null || len < 3) return ans;
+        if (nums == null || len < 3) return ans;
         Arrays.sort(nums); // 排序
-        for (int i = 0; i < len ; i++) {
-            if(nums[i] > 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
-            if(i > 0 && nums[i] == nums[i-1]) continue; // 去重
-            int L = i+1;
-            int R = len-1;
-            while(L < R){
+        for (int i = 0; i < len; i++) {
+            if (nums[i] > 0) break; // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
+            if (i > 0 && nums[i] == nums[i - 1]) continue; // 去重
+            int L = i + 1;
+            int R = len - 1;
+            while (L < R) {
                 int sum = nums[i] + nums[L] + nums[R];
-                if(sum == 0){
-                    ans.add(Arrays.asList(nums[i],nums[L],nums[R]));
-                    while (L<R && nums[L] == nums[L+1]) L++; // 去重
-                    while (L<R && nums[R] == nums[R-1]) R--; // 去重
+                if (sum == 0) {
+                    ans.add(Arrays.asList(nums[i], nums[L], nums[R]));
+                    while (L < R && nums[L] == nums[L + 1]) L++; // 去重
+                    while (L < R && nums[R] == nums[R - 1]) R--; // 去重
                     L++;
                     R--;
-                }
-                else if (sum < 0) L++;
+                } else if (sum < 0) L++;
                 else if (sum > 0) R--;
             }
         }
         return ans;
+    }
+
+    /**
+     * 77. 组合
+     *
+     * @param n
+     * @param k
+     * @return 给定两个整数 n 和 k，返回 1 ... n 中所有可能的 k 个数的组合。
+     * <p>
+     * 示例
+     * 输入: n = 4, k = 2
+     * 输出:
+     * [
+     * [2,4],
+     * [3,4],
+     * [2,3],
+     * [1,2],
+     * [1,3],
+     * [1,4],
+     * ]
+     */
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> lists = new ArrayList<>();
+
+        helperCombine(1, n, k, lists, new ArrayList<Integer>());
+        return lists;
+    }
+
+    private void helperCombine(int begin, int n, int k, List<List<Integer>> lists, List<Integer> list) {
+        if (list.size() == k) {
+            lists.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int i = begin; i < n + 1; i++) {
+            list.add(i);
+            helperCombine(i + 1, n, k, lists, list);
+            list.remove(list.size() - 1);
+        }
+    }
+
+
+    /**
+     * 46. 全排列
+     *
+     * @param nums
+     * @return 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
+     * <p>
+     * 示例
+     * 输入: [1,2,3]
+     * 输出:
+     * [
+     * [1,2,3],
+     * [1,3,2],
+     * [2,1,3],
+     * [2,3,1],
+     * [3,1,2],
+     * [3,2,1]
+     * ]
+     */
+    public static List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> lists = new ArrayList<>();
+        boolean[] visited = new boolean[nums.length];
+        helperPermute(visited, nums, lists, new ArrayList<Integer>());
+        return lists;
+    }
+
+    private static void helperPermute(boolean[] visited, int[] nums, List<List<Integer>> lists, List<Integer> list) {
+        if (list.size() == nums.length) {
+            lists.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (!visited[i]) {
+                visited[i] = true;
+                list.add(nums[i]);
+                helperPermute(visited, nums, lists, list);
+                list.remove(list.size() - 1);
+                visited[i] = false;
+            }
+        }
+    }
+
+    /**
+     * 47.全排列 II
+     *
+     * @param nums
+     * @return 示例
+     * <p>
+     * 输入: [1,1,2]
+     * 输出:
+     * [
+     * [1,1,2],
+     * [1,2,1],
+     * [2,1,1]
+     * ]
+     */
+    public static List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> lists = new ArrayList<>();
+        boolean[] visited = new boolean[nums.length];
+        Arrays.sort(nums);
+        helperPermuteUnique(visited, nums, lists, new ArrayList<Integer>());
+        return lists;
+    }
+
+    private static void helperPermuteUnique(boolean[] visited, int[] nums, List<List<Integer>> lists, List<Integer> list) {
+        if (list.size() == nums.length) {
+            lists.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (visited[i]) {
+                continue;
+            }
+            if (i > 0 && nums[i] == nums[i - 1] && !visited[i - 1]) {
+                continue;
+            }
+            visited[i] = true;
+            list.add(nums[i]);
+            helperPermuteUnique(visited, nums, lists, list);
+            list.remove(list.size() - 1);
+            visited[i] = false;
+        }
+    }
+//    public static List<List<Integer>> permuteUnique(int[] nums) {
+//        List<List<Integer>> lists = new ArrayList<>();
+//        boolean[] visited = new boolean[nums.length];
+//        helperPermuteUnique(visited, nums, lists, new ArrayList<Integer>());
+//        return lists;
+//    }
+//    private static void helperPermuteUnique(boolean[] visited, int[] nums, List<List<Integer>> lists, List<Integer> list) {
+//        if (list.size() == nums.length) {
+//            if (!lists.contains(list)) {
+//                lists.add(new ArrayList<Integer>(list));
+//            }
+//            return;
+//        }
+//        for (int i = 0; i < nums.length; i++) {
+//            if (!visited[i]) {
+//                visited[i] = true;
+//                list.add(nums[i]);
+//                helperPermuteUnique(visited, nums, lists, list);
+//                list.remove(list.size() - 1);
+//                visited[i] = false;
+//            }
+//        }
+//    }
+
+    /**
+     * 78. 子集
+     *
+     * @param nums
+     * @return 给定一组不含重复元素的整数数组 nums，返回该数组所有可能的子集（幂集）。
+     * <p>
+     * 说明：解集不能包含重复的子集。
+     * <p>
+     * 示例:
+     * 输入: nums = [1,2,3]
+     * 输出:
+     * [
+     * [3],
+     *   [1],
+     *   [2],
+     *   [1,2,3],
+     *   [1,3],
+     *   [2,3],
+     *   [1,2],
+     *   []
+     * ]
+     */
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> lists = new ArrayList<>();
+
+        helperSubsets(0,nums, lists, new ArrayList<Integer>());
+        return lists;
+    }
+
+    private void helperSubsets(int first,int[] nums, List<List<Integer>> lists, List<Integer> list) {
+        lists.add(new ArrayList<Integer>(list));
+        for (int i = first; i < nums.length; i++) {
+            list.add(nums[i]);
+            helperSubsets(i + 1, nums, lists, list);
+            list.remove(list.size() - 1);
+        }
     }
 }

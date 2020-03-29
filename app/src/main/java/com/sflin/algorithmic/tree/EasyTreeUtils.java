@@ -1,5 +1,8 @@
 package com.sflin.algorithmic.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by MagicFrost
  * <p>
@@ -105,5 +108,58 @@ public class EasyTreeUtils {
         node.left = sortedArrayToBST(nums,left,mid - 1);
         node.right = sortedArrayToBST(nums,mid+1,right);
         return node;
+    }
+
+    /**
+     * 590. N叉树的后序遍历
+     *
+     * @param root
+     * @return
+     *
+     * 给定一个 N 叉树，返回其节点值的后序遍历。
+     *
+     */
+    public List<Integer> postorder(Node root) {
+
+        List<Integer> list = new ArrayList<>();
+
+        traversalPostOrder(root,list);
+
+        return list;
+    }
+    private void traversalPostOrder(Node root, List<Integer> list) {
+        if (root == null){
+            return;
+        }
+        for (Node node:root.children){
+            traversalPostOrder(node,list);
+        }
+        list.add(root.val);
+    }
+
+    /**
+     * 589. N叉树的前序遍历
+     *
+     * @param root
+     * @return
+     *
+     * 给定一个 N 叉树，返回其节点值的前序遍历。
+     */
+    public List<Integer> preorder(Node root) {
+        List<Integer> list = new ArrayList<>();
+
+        traversalPreOrder(root,list);
+
+        return list;
+    }
+
+    private void traversalPreOrder(Node root, List<Integer> list) {
+        if (root == null){
+            return;
+        }
+        list.add(root.val);
+        for (Node node:root.children){
+            traversalPreOrder(node,list);
+        }
     }
 }

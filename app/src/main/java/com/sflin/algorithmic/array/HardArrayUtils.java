@@ -9,58 +9,73 @@ public class HardArrayUtils {
 
     /**
      * 跳跃游戏 II
+     *
      * @param nums
-     * @return
-     * 示例
+     * @return 示例
      * 输入: [2,3,1,1,4]
      * 输出: 2
      * 解释: 跳到最后一个位置的最小跳跃数是 2。
-     *      从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。
+     * 从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。
      */
-    public static int jump(int[] nums) {
-
-        if (nums.length <= 1){
+    public int jump(int[] nums) {
+        if (nums.length < 2) {
             return 0;
         }
-
-        return nextStep(nums,1,0);
-    }
-
-    private static int nextStep(int[] nums,int step,int index){
-
-        if (step == nums.length - 1){
-            return step;
-        }
-
-        int num = nums[index];
-
-        if (nums.length - 1 - index > num){
-            int max = 0;
-            int tmp = index;
-            for (int i = 1; i <=num; i++) {
-                if (max <= nums[tmp+i] + i){
-                    max = nums[tmp+i] + i;
-                    index = tmp+i;
-                }
+        int cur_max_index = nums[0];//当前可达到的最远位置
+        int pre_max_index = nums[0];//遍历各个位置的过程中可达到的最远距离
+        int min_jump = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (i > pre_max_index) {//如果i无法再向前，那么在cur_max_index位置之前需要一次跳跃
+                pre_max_index = cur_max_index;
+                min_jump++;
             }
-
-            return nextStep(nums,step+1,index);
+            if (i + nums[i] > cur_max_index) {
+                cur_max_index = nums[i] + i;
+            }
         }
-        return step;
+        return min_jump;
     }
+//    public static int jump(int[] nums) {
+//
+//        if (nums.length <= 1){
+//            return 0;
+//        }
+//
+//        return nextStep(nums,1,0);
+//    }
+//
+//    private static int nextStep(int[] nums,int step,int index){
+//
+//        if (step == nums.length - 1){
+//            return step;
+//        }
+//
+//        int num = nums[index];
+//
+//        if (nums.length - 1 - index > num){
+//            int max = 0;
+//            int tmp = index;
+//            for (int i = 1; i <=num; i++) {
+//                if (max <= nums[tmp+i] + i){
+//                    max = nums[tmp+i] + i;
+//                    index = tmp+i;
+//                }
+//            }
+//
+//            return nextStep(nums,step+1,index);
+//        }
+//        return step;
+//    }
 
     /**
      * 42. 接雨水
      *
      * @param height
-     * @return
-     *
-     * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
-     *
+     * @return 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
+     * <p>
      * 示例
      * 输入: [0,1,0,2,1,0,1,3,2,1,2,1]
      * 输出: 6
-     *
      */
 //    public int trap(int[] height) {
 //        int left = 0, right = height.length - 1;
@@ -91,7 +106,7 @@ public class HardArrayUtils {
 //    }
     public static int trap(int[] height) {
 
-        if (height.length < 3){
+        if (height.length < 3) {
             return 0;
         }
 
@@ -101,24 +116,24 @@ public class HardArrayUtils {
         int index = maxIndex(height);
 
         //计算左边雨水量
-        result += rainWaterValue(height,index + 1);
+        result += rainWaterValue(height, index + 1);
 
         int[] newArr = new int[height.length - index];
         for (int i = 0; i < newArr.length; i++) {
-            newArr[i] = height[height.length - i -1];
+            newArr[i] = height[height.length - i - 1];
         }
 
         //计算右边雨水量
-        result += rainWaterValue(newArr,newArr.length);
+        result += rainWaterValue(newArr, newArr.length);
 
         return result;
     }
 
-    private static int maxIndex(int[] height){
-        int max = 0,index = 0;
+    private static int maxIndex(int[] height) {
+        int max = 0, index = 0;
 
         for (int i = 0; i < height.length; i++) {
-            if (height[i] > max){
+            if (height[i] > max) {
                 max = height[i];
                 index = i;
             }
@@ -126,7 +141,7 @@ public class HardArrayUtils {
         return index;
     }
 
-    private static int rainWaterValue(int[] arr,int index){
+    private static int rainWaterValue(int[] arr, int index) {
         int left = 0;
 
         boolean isHasPeak = false;
@@ -135,15 +150,15 @@ public class HardArrayUtils {
 
         for (int i = 0; i < index; i++) {
 
-            if (isHasPeak){
-                if (arr[i] >= arr[left]){
-                    result += calculate(arr,left,i);
+            if (isHasPeak) {
+                if (arr[i] >= arr[left]) {
+                    result += calculate(arr, left, i);
                     left = i;
                 }
-            }else {
-                if (arr[i] >= arr[left]){
+            } else {
+                if (arr[i] >= arr[left]) {
                     left = i;
-                }else {
+                } else {
                     isHasPeak = true;
                 }
             }
@@ -151,7 +166,7 @@ public class HardArrayUtils {
         return result;
     }
 
-    private static int calculate(int[] height,int left,int right){
+    private static int calculate(int[] height, int left, int right) {
         int diff = height[left];
         int result = 0;
         for (int i = left + 1; i < right; i++) {

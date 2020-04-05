@@ -314,4 +314,24 @@ public class EasyOtherUtils {
     public int gcd(int x, int y) {
         return x == 0 ? y : gcd(y % x, x);
     }
+
+    /**
+     * 面试题62. 圆圈中最后剩下的数字
+     *
+     * @param n
+     * @param m
+     * @return
+     *
+     * 示例
+     * 输入: n = 5, m = 3
+     * 输出: 3
+     */
+    public int lastRemaining(int n, int m) {
+        int ans = 0;
+        // 最后一轮剩下2个人，所以从2开始反推
+        for (int i = 2; i <= n; i++) {
+            ans = (ans + m) % i;
+        }
+        return ans;
+    }
 }

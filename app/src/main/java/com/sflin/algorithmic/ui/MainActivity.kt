@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(com.sflin.algorithmic.R.layout.activity_main)
 
         init()
+
     }
 
     private fun init() {
@@ -160,7 +161,7 @@ class MainActivity : AppCompatActivity() {
         MediumArrayUtils.sumSubarrayMins(intArrayOf(3,1,2,4))
 
         HardArrayUtils.trap(intArrayOf(2,0,2))
-        MediumArrayUtils.permute(intArrayOf(1,2,3))
+        MediumArrayUtils.findMin(intArrayOf(3,4,5,1,2))
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -250,5 +251,6 @@ class MainActivity : AppCompatActivity() {
         val arr = arrayOf(intArrayOf(1, 2), intArrayOf(3, 4))
         EasyOtherUtils.surfaceArea(arr)
         MediumOtherUtils.generateParenthesis(3)
+        MediumOtherUtils.numIslands(arrayOf(charArrayOf('1','1','0','0','0'), charArrayOf('1','1','0','0','0'), charArrayOf('0','0','1','0','0'), charArrayOf('0','0','0','1','1')))
     }
 }

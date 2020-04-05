@@ -70,6 +70,7 @@ public class MediumOtherUtils {
 
         return fastPow(x, N);
     }
+
     private double fastPow(double x, long n) {
         if (n == 0) {
             return 1.0;
@@ -81,4 +82,100 @@ public class MediumOtherUtils {
             return half * half * x;
         }
     }
+
+    /**
+     * 200. 岛屿数量
+     *
+     * @param grid
+     * @return 示例
+     * 输入:
+     * 11110
+     * 11010
+     * 11000
+     * 00000
+     * <p>
+     * 输出: 1
+     */
+    public static int numIslands(char[][] grid) {
+
+        int count = 0;
+
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (grid[i][j] == '1') {
+                    count++;
+                    dfs(grid, i, j);
+                }
+            }
+        }
+        return count;
+    }
+
+    private static void dfs(char[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == '0') {
+            return;
+        }
+        grid[i][j] = '0';
+        dfs(grid, i - 1, j);
+        dfs(grid, i + 1, j);
+        dfs(grid, i, j - 1);
+        dfs(grid, i, j + 1);
+    }
+
+    /**
+     * 529. 扫雷游戏
+     *
+     * @param board
+     * @param click
+     * @return 示例
+     * 输入:
+     * <p>
+     * [['B', '1', 'E', '1', 'B'],
+     * ['B', '1', 'M', '1', 'B'],
+     * ['B', '1', '1', '1', 'B'],
+     * ['B', 'B', 'B', 'B', 'B']]
+     * <p>
+     * Click : [1,2]
+     * <p>
+     * 输出:
+     * <p>
+     * [['B', '1', 'E', '1', 'B'],
+     * ['B', '1', 'X', '1', 'B'],
+     * ['B', '1', '1', '1', 'B'],
+     * ['B', 'B', 'B', 'B', 'B']]
+     */
+    public char[][] updateBoard(char[][] board, int[] click) {
+
+        return dfsBoard(board, click[0], click[1]);
+    }
+
+    private char[][] dfsBoard(char[][] board, int x, int y) {
+        if (board[x][y] == 'M') {
+            board[x][y] = 'X';
+            return board;
+        }
+        int count = 0;
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                if (i >= 0 && i < board.length && j >= 0 && j < board[0].length)
+                    if (board[i][j] == 'M')
+                        count++;
+            }
+        }
+        if (count != 0) {
+            board[x][y] = (char) (count + '0');
+        } else {
+            board[x][y] = 'B';
+            for (int i = x - 1; i <= x + 1; i++)
+                for (int j = y - 1; j <= y + 1; j++) {
+                    if (i >= 0 && i < board.length && j >= 0 && j < board[0].length)
+                        if (board[i][j] == 'E')
+                            dfsBoard(board, i, j);
+                }
+
+        }
+
+        return board;
+    }
+
 }

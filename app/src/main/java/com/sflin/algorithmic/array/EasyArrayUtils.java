@@ -3,9 +3,11 @@ package com.sflin.algorithmic.array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * Created by MagicFrost
@@ -534,7 +536,7 @@ public class EasyArrayUtils {
     public static int[] getLeastNumbers(int[] arr, int k) {
         //默认小顶堆实现
         PriorityQueue<Integer> heap = new PriorityQueue<>();
-        for (int i = 0; i < arr.length;i++) {
+        for (int i = 0; i < arr.length; i++) {
             heap.add(arr[i]);
         }
         int[] ans = new int[k];
@@ -552,4 +554,120 @@ public class EasyArrayUtils {
 //        }
 //        return newArr;
 //    }
+
+    /**
+     * 455. 分发饼干
+     *
+     * @param g
+     * @param s
+     * @return 示例
+     * 输入: [1,2,3], [1,1]
+     * <p>
+     * 输出: 1
+     * <p>
+     * 解释:
+     * 你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。
+     * 虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。
+     * 所以你应该输出1。
+     */
+    public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int i = 0;
+        int j = 0;
+        for (; i < g.length && j < s.length; ) {
+            if (g[i] <= s[j]) {
+                i++;
+            }
+            j++;
+        }
+        return i;
+    }
+
+    /**
+     * 874. 模拟行走机器人
+     *
+     * @param commands
+     * @param obstacles
+     * @return
+     *
+     * 示例
+     * 输入: commands = [4,-1,3], obstacles = []
+     * 输出: 25
+     * 解释: 机器人将会到达 (3, 4)
+     */
+    public int robotSim(int[] commands, int[][] obstacles) {
+        int[] dx = new int[]{0, 1, 0, -1};
+        int[] dy = new int[]{1, 0, -1, 0};
+        int x = 0, y = 0, di = 0;
+
+        // Encode obstacles (x, y) as (x+30000) * (2^16) + (y+30000)
+        Set<Long> obstacleSet = new HashSet();
+        for (int[] obstacle: obstacles) {
+            long ox = (long) obstacle[0] + 30000;
+            long oy = (long) obstacle[1] + 30000;
+            obstacleSet.add((ox << 16) + oy);
+        }
+
+        int ans = 0;
+        for (int cmd: commands) {
+            if (cmd == -2)  //left
+                di = (di + 3) % 4;
+            else if (cmd == -1)  //right
+                di = (di + 1) % 4;
+            else {
+                for (int k = 0; k < cmd; ++k) {
+                    int nx = x + dx[di];
+                    int ny = y + dy[di];
+                    long code = (((long) nx + 30000) << 16) + ((long) ny + 30000);
+                    if (!obstacleSet.contains(code)) {
+                        x = nx;
+                        y = ny;
+                        ans = Math.max(ans, x*x + y*y);
+                    }
+                }
+            }
+        }
+
+        return ans;
+    }
+
+    /**
+     * 860. 柠檬水找零
+     *
+     * @param bills
+     * @return
+     *
+     * 示例
+     * 输入：[5,5,5,10,20]
+     * 输出：true
+     * 解释：
+     * 前 3 位顾客那里，我们按顺序收取 3 张 5 美元的钞票。
+     * 第 4 位顾客那里，我们收取一张 10 美元的钞票，并返还 5 美元。
+     * 第 5 位顾客那里，我们找还一张 10 美元的钞票和一张 5 美元的钞票。
+     * 由于所有客户都得到了正确的找零，所以我们输出 true。
+     */
+    public boolean lemonadeChange(int[] bills) {
+        int five = 0, ten = 0;
+        for (int bill: bills) {
+            if (bill == 5)
+                five++;
+            else if (bill == 10) {
+                if (five == 0) return false;
+                five--;
+                ten++;
+            } else {
+                if (five > 0 && ten > 0) {
+                    five--;
+                    ten--;
+                } else if (five >= 3) {
+                    five -= 3;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
 }

@@ -321,36 +321,61 @@ public class MediumArrayUtils {
      * 输出: -1
      */
     public static int search(int[] nums, int target) {
-        if (nums == null || nums.length == 0) {
-            return -1;
-        }
-        return search(nums, target, 0, nums.length - 1);
-    }
+        int left = 0;
+        int right = nums.length - 1;
 
-    private static int search(int[] nums, int target, int left, int right) {
-        if (left == right) {
-            return nums[left] == target ? left : -1;
-        }
-        int pos = (left + right) / 2;
-        if (nums[pos] == target) {
-            return pos;
-        } else {
-            if (nums[left] < nums[pos]) { //左边有序
-                if (nums[left] <= target && pos - 1 >= left && nums[pos - 1] >= target) {
-                    return search(nums, target, left, pos - 1);
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[left] <= nums[mid]) {
+                if (nums[left] <= target && nums[mid] >= target) {
+                    right = mid - 1;
                 } else {
-                    return pos + 1 <= right ? search(nums, target, pos + 1, right) : -1;
+                    left = mid + 1;
                 }
-            } else { //右边有序
-                if (nums[right] >= target && pos + 1 <= right && nums[pos + 1] <= target) {
-                    return search(nums, target, pos + 1, right);
+            } else {
+                if (nums[mid] <= target && nums[right] >= target) {
+                    left = mid + 1;
                 } else {
-                    return left <= pos - 1 ? search(nums, target, left, pos - 1) : -1;
+                    right = mid - 1;
                 }
             }
-
         }
+        return -1;
     }
+
+//    public static int search(int[] nums, int target) {
+//        if (nums == null || nums.length == 0) {
+//            return -1;
+//        }
+//        return search(nums, target, 0, nums.length - 1);
+//    }
+//
+//    private static int search(int[] nums, int target, int left, int right) {
+//        if (left == right) {
+//            return nums[left] == target ? left : -1;
+//        }
+//        int pos = (left + right) / 2;
+//        if (nums[pos] == target) {
+//            return pos;
+//        } else {
+//            if (nums[left] < nums[pos]) { //左边有序
+//                if (nums[left] <= target && pos - 1 >= left && nums[pos - 1] >= target) {
+//                    return search(nums, target, left, pos - 1);
+//                } else {
+//                    return pos + 1 <= right ? search(nums, target, pos + 1, right) : -1;
+//                }
+//            } else { //右边有序
+//                if (nums[right] >= target && pos + 1 <= right && nums[pos + 1] <= target) {
+//                    return search(nums, target, pos + 1, right);
+//                } else {
+//                    return left <= pos - 1 ? search(nums, target, left, pos - 1) : -1;
+//                }
+//            }
+//
+//        }
+//    }
 
     /**
      * 石子游戏
@@ -710,16 +735,171 @@ public class MediumArrayUtils {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> lists = new ArrayList<>();
 
-        helperSubsets(0,nums, lists, new ArrayList<Integer>());
+        helperSubsets(0, nums, lists, new ArrayList<Integer>());
         return lists;
     }
 
-    private void helperSubsets(int first,int[] nums, List<List<Integer>> lists, List<Integer> list) {
+    private void helperSubsets(int first, int[] nums, List<List<Integer>> lists, List<Integer> list) {
         lists.add(new ArrayList<Integer>(list));
         for (int i = first; i < nums.length; i++) {
             list.add(nums[i]);
             helperSubsets(i + 1, nums, lists, list);
             list.remove(list.size() - 1);
         }
+    }
+
+    /**
+     * 40. 组合总和 II
+     *
+     * @param candidates
+     * @param target
+     * @return 示例
+     * 输入: candidates = [10,1,2,7,6,1,5], target = 8,
+     * 所求解集为:
+     * [
+     * [1, 7],
+     * [1, 2, 5],
+     * [2, 6],
+     * [1, 1, 6]
+     * ]
+     */
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> lists = new ArrayList<>();
+        Arrays.sort(candidates);
+        helperCombinationSum(0, target, candidates, lists, new ArrayList<Integer>());
+        return lists;
+    }
+
+    private void helperCombinationSum(int first, int target, int[] candidates, List<List<Integer>> lists, List<Integer> list) {
+
+        if (target == 0) {
+            lists.add(new ArrayList<Integer>(list));
+            return;
+        }
+        for (int i = first; i < candidates.length; i++) {
+            if (target - candidates[i] < 0) {
+                break;
+            }
+            if (i > first && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+            list.add(candidates[i]);
+            helperCombinationSum(i + 1, target - candidates[i], candidates, lists, list);
+            list.remove(list.size() - 1);
+        }
+    }
+
+    /**
+     * 153. 寻找旋转排序数组中的最小值
+     *
+     * @param nums
+     * @return 示例
+     * 输入: [3,4,5,1,2]
+     * 输出: 1
+     */
+    public static int findMin(int[] nums) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        int min = Integer.MAX_VALUE;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+
+            if (nums[left] <= nums[mid]) {
+                min = Math.min(min, nums[left]);
+                left = mid + 1;
+            } else {
+                mid = nums[mid];
+                right = mid - 1;
+            }
+        }
+        return min;
+    }
+//    public static int findMin(int[] nums) {
+//
+//        int left = 0;
+//        int right = nums.length - 1;
+//
+//        while (left < right) {
+//            int mid = (left + right) / 2;
+//
+//            if (nums[right] < nums[mid]){
+//                left = mid + 1;
+//            }else {
+//                right = mid;
+//            }
+//        }
+//        return nums[left];
+//    }
+//    public static int findMin(int[] nums) {
+//        int min = nums[0];
+//        for (int i = 1; i < nums.length; i++) {
+//            min = Math.min(nums[i],min);
+//        }
+//        return min;
+//    }
+//    public static int findMin(int[] nums) {
+//
+//        Arrays.sort(nums);
+//        return nums[0];
+//    }
+
+    /**
+     * 55. 跳跃游戏
+     *
+     * @param nums
+     * @return 示例
+     * <p>
+     * 输入: [2,3,1,1,4]
+     * 输出: true
+     * 解释: 我们可以先跳 1 步，从位置 0 到达 位置 1, 然后再从位置 1 跳 3 步到达最后一个位置。
+     */
+    public boolean canJump(int[] nums) {
+        int lastPos = nums.length - 1;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (i + nums[i] >= lastPos) {
+                lastPos = i;
+            }
+        }
+        return lastPos == 0;
+    }
+
+    /**
+     * 74. 搜索二维矩阵
+     *
+     * @param matrix
+     * @param target
+     * @return
+     *
+     * 示例
+     * 输入:
+     * matrix = [
+     *   [1,   3,  5,  7],
+     *   [10, 11, 16, 20],
+     *   [23, 30, 34, 50]
+     * ]
+     * target = 3
+     * 输出: true
+     */
+    public boolean searchMatrix2(int[][] matrix, int target) {
+        if (matrix == null || matrix.length == 0) {
+            return false;
+        }
+        int rows = matrix.length, cols = matrix[0].length;
+
+        int row = rows - 1, col = 0;
+        while (row >= 0 && col < cols) {
+            if (matrix[row][col] == target) {
+                return true;
+            } else if (matrix[row][col] > target) {
+                col = 0;
+                row--;
+            } else {
+                col++;
+            }
+        }
+        return false;
     }
 }

@@ -18,6 +18,7 @@ public class EasyLinkedListUtils {
     public static void deleteNode(ListNode node) {
         node.val = node.next.val;
         node.next = node.next.next;
+
     }
 
     /**
@@ -82,13 +83,12 @@ public class EasyLinkedListUtils {
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
                 cur.next = l1;
-                cur = cur.next;
                 l1 = l1.next;
             } else {
                 cur.next = l2;
-                cur = cur.next;
                 l2 = l2.next;
             }
+            cur = cur.next;
         }
         // 任一为空，直接连接另一条链表
         if (l1 == null) {
@@ -257,7 +257,7 @@ public class EasyLinkedListUtils {
      * 输出：此列表中的结点 4 (序列化形式：[4,5,6])
      * 由于该列表有两个中间结点，值分别为 3 和 4，我们返回第二个结点。
      */
-    public static ListNode middleNode(ListNode head) {
+    public static ListNode   middleNode(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }

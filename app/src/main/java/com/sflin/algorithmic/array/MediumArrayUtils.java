@@ -722,7 +722,7 @@ public class MediumArrayUtils {
      * 输入: nums = [1,2,3]
      * 输出:
      * [
-     * [3],
+     *   [3],
      *   [1],
      *   [2],
      *   [1,2,3],
@@ -871,14 +871,12 @@ public class MediumArrayUtils {
      *
      * @param matrix
      * @param target
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入:
      * matrix = [
-     *   [1,   3,  5,  7],
-     *   [10, 11, 16, 20],
-     *   [23, 30, 34, 50]
+     * [1,   3,  5,  7],
+     * [10, 11, 16, 20],
+     * [23, 30, 34, 50]
      * ]
      * target = 3
      * 输出: true
@@ -901,5 +899,55 @@ public class MediumArrayUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * 18. 四数之和
+     *
+     * @param nums
+     * @param target
+     * @return 给定数组 nums = [1, 0, -1, 0, -2, 2]，和 target = 0。
+     * <p>
+     * 满足要求的四元组集合为：
+     * [
+     * [-1,  0, 0, 1],
+     * [-2, -1, 1, 2],
+     * [-2,  0, 0, 2]
+     * ]
+     */
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 3; i++) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            for (int j = i + 1; j < nums.length - 2; j++) {
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                int left = j + 1;
+                int right = nums.length - 1;
+                while (left < right) {
+                    if (nums[i] + nums[j] + nums[left] + nums[right] < target) {
+                        left++;
+                    } else if (nums[i] + nums[j] + nums[left] + nums[right] > target) {
+                        right--;
+                    } else {
+                        result.add(Arrays.asList(nums[i], nums[j], nums[left],
+                                nums[right]));
+                        left++;
+                        right--;
+                        while (left < right && nums[left] == nums[left - 1]) {
+                            left++;
+                        }
+                        while (left < right && nums[right] == nums[right + 1]) {
+                            right--;
+                        }
+                    }
+                }
+            }
+        }
+        return result;
     }
 }

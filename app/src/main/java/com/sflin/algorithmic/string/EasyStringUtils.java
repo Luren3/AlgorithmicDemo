@@ -1,6 +1,7 @@
 package com.sflin.algorithmic.string;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * Created MagicFrost.
@@ -30,6 +31,28 @@ public class EasyStringUtils {
     }
 
     /**
+     * 541. 反转字符串 II
+     *
+     * @param s
+     * @param k
+     * @return 示例
+     * 输入: s = "abcdefg", k = 2
+     * 输出: "bacdfeg"
+     */
+    public String reverseStr(String s, int k) {
+        char[] a = s.toCharArray();
+        for (int start = 0; start < a.length; start += 2 * k) {
+            int i = start, j = Math.min(start + k - 1, a.length - 1);
+            while (i < j) {
+                char tmp = a[i];
+                a[i++] = a[j];
+                a[j--] = tmp;
+            }
+        }
+        return new String(a);
+    }
+
+    /**
      * 整数反转
      *
      * @param x
@@ -54,16 +77,20 @@ public class EasyStringUtils {
     public static int reverse(int x) {
         int result = 0;
         while (x != 0) {
-            if (result > Integer.MAX_VALUE / 10 || result < Integer.MIN_VALUE / 10)
+            int pop = x % 10;
+            if (result > Integer.MAX_VALUE / 10 || (result == Integer.MAX_VALUE / 10 && pop > 7))
                 return 0;
-            result = result * 10 + x % 10;
+            if (result < Integer.MIN_VALUE / 10 || (result == Integer.MIN_VALUE / 10 && pop < -8))
+                return 0;
+
+            result = result * 10 + pop;
             x /= 10;
         }
         return result;
     }
 
     /**
-     * 字符串中的第一个唯一字符
+     * 387.字符串中的第一个唯一字符
      *
      * @param s
      * @return 示例
@@ -142,6 +169,33 @@ public class EasyStringUtils {
         s = s.replaceAll("[\\p{P}\\p{Punct}]", "").toLowerCase();
         for (int i = 0; i < s.length() / 2; i++) {
             if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 680. 验证回文字符串 Ⅱ
+     *
+     * @param s
+     * @return
+     *
+     * 示例
+     *
+     */
+    public boolean validPalindrome(String s) {
+        for(int i = 0, j = s.length()-1; i < j ; i++, j--){
+            if(s.charAt(i) != s.charAt(j)){
+                //分两种情况，一是右边减一，二是左边加一
+                return isPalindrome(s,i,j-1) || isPalindrome(s, i+1, j);
+            }
+        }
+        return true;
+    }
+    public boolean isPalindrome(String s, int i, int j) {
+        while (i < j) {
+            if (s.charAt(i++) != s.charAt(j--)) {
                 return false;
             }
         }
@@ -341,15 +395,13 @@ public class EasyStringUtils {
      * 409. 最长回文串
      *
      * @param s
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入:
      * "abccccdd"
-     *
+     * <p>
      * 输出:
      * 7
-     *
+     * <p>
      * 解释:
      * 我们可以构造的最长的回文串是"dccaccd", 它的长度是 7。
      */
@@ -389,4 +441,93 @@ public class EasyStringUtils {
 //        }
 //        return result + odd;
 //    }
+
+    /**
+     * 151. 翻转字符串里的单词
+     *
+     * @param s
+     * @return 示例
+     * 输入: "the sky is blue"
+     * 输出: "blue is sky the"
+     */
+    public String reverseWords(String s) {
+        String[] arr = s.trim().split("\\s+");
+
+        StringBuilder builder = new StringBuilder();
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+            builder.append(arr[i]).append(" ");
+        }
+        return builder.toString().trim();
+    }
+
+    /**
+     * 557. 反转字符串中的单词 III
+     *
+     * @param s
+     * @return 示例
+     * 输入: "Let's take LeetCode contest"
+     * 输出: "s'teL ekat edoCteeL tsetnoc"
+     */
+    public String reverseWords2(String s) {
+        String[] arr = s.trim().split("\\s+");
+
+        StringBuilder builder = new StringBuilder();
+        for (String str : arr) {
+            builder.append(reverseString(str)).append(" ");
+        }
+        return builder.toString().trim();
+    }
+
+    /**
+     * 917. 仅仅反转字母
+     *
+     * @param S
+     * @return 示例
+     * 输入："ab-cd"
+     * 输出："dc-ba"
+     */
+    public String reverseOnlyLetters(String S) {
+        Stack<Character> letters = new Stack();
+        for (char c : S.toCharArray())
+            if (Character.isLetter(c))
+                letters.push(c);
+
+        StringBuilder ans = new StringBuilder();
+        for (char c : S.toCharArray()) {
+            if (Character.isLetter(c))
+                ans.append(letters.pop());
+            else
+                ans.append(c);
+        }
+
+        return ans.toString();
+    }
+
+
+    /**
+     * 205. 同构字符串
+     *
+     * @param s
+     * @param t
+     * @return 示例
+     * 输入: s = "egg", t = "add"
+     * 输出: true
+     */
+    public boolean isIsomorphic(String s, String t) {
+        int[] arr1 = new int[256];
+        int[] arr2 = new int[256];
+        char[] s1 = s.toCharArray();
+        char[] t1 = t.toCharArray();
+        for (int i = 0; i < s1.length; i++) {
+            char c1 = s1[i];
+            char c2 = t1[i];
+            if (arr1[c1] != arr2[c2]) {
+                return false;
+            }
+            arr1[c1] = i + 1;
+            arr2[c2] = i + 1;
+        }
+        return true;
+    }
 }

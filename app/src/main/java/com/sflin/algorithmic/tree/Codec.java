@@ -2,6 +2,7 @@ package com.sflin.algorithmic.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.locks.LockSupport;
 
 /**
  * Created by MagicFrost.
@@ -37,6 +38,7 @@ public class Codec {
                 queue.add(node.right);
             }
         }
+        LockSupport.park();
         return sb.toString();
     }
 

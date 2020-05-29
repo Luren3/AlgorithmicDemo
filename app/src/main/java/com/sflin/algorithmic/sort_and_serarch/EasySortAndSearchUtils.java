@@ -61,4 +61,56 @@ public class EasySortAndSearchUtils {
     private static boolean isBadVersion(int version) {
         return false;
     }
+
+    public static void quickSort(int[] array, int begin, int end) {
+        if (end <= begin)
+            return;
+        int pivot = partition(array, begin, end);
+        quickSort(array, begin, pivot - 1);
+        quickSort(array, pivot + 1, end);
+    }
+
+    private static int partition(int[] array, int begin, int end) {
+        //pivot: 标杆位置，counter：小于pivot的元素的个数
+        int pivot = end, counter = begin;
+        for (int i = begin; i < end; i++) {
+            if (array[i] < array[pivot]) {
+                int temp = array[counter];
+                array[counter] = array[i];
+                array[i] = temp;
+                counter++;
+            }
+        }
+        int temp = array[pivot];
+        array[pivot] = array[counter];
+        array[counter] = temp;
+        return counter;
+    }
+
+    public static void mergeSort(int[] array, int left, int right) {
+        if (right <= left)
+            return;
+        int mid = (left + right) >> 1;// (left + right) / 2
+        mergeSort(array, left, mid);
+        mergeSort(array, mid, right);
+        merge(array, left, mid, right);//System.arraycopy(a,start1,b,start2,length);
+
+    }
+    private static void merge(int[] array, int left, int mid, int right) {
+        int[] temp = new int[right - left + 1];
+        int i = left, j = mid + 1, k = 0;
+        while (i <= mid && j <= right) {
+            temp[k++] = array[i] < array[j] ? array[i++] : array[j++];
+        }
+        while (i <= mid) {
+            array[k++] = array[i++];
+        }
+        while (j <= right) {
+            array[k++] = array[j++];
+        }
+        for (int p = 0; p < temp.length; p++) {
+            array[left + p] = temp[p];
+        }
+
+    }
 }

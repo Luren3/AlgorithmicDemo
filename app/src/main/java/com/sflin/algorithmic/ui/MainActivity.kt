@@ -1,7 +1,6 @@
 package com.sflin.algorithmic.ui
 
-import android.os.Build
-import android.os.Bundle
+import android.os.*
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -18,6 +17,7 @@ import com.sflin.algorithmic.linkedList.ListNode
 import com.sflin.algorithmic.linkedList.MediumLinkedListUtils
 import com.sflin.algorithmic.other.EasyOtherUtils
 import com.sflin.algorithmic.other.MediumOtherUtils
+import com.sflin.algorithmic.sort_and_serarch.MediumSortAndSearchUtils
 import com.sflin.algorithmic.stack.HardStackUtils
 import com.sflin.algorithmic.stack.MedianFinder
 import com.sflin.algorithmic.stack.MediumStackUtils
@@ -27,10 +27,11 @@ import com.sflin.algorithmic.string.MediumStringUtils
 import com.sflin.algorithmic.string.Trie
 import com.sflin.algorithmic.tree.Codec
 import com.sflin.algorithmic.tree.HardTreeUtils
-import com.sflin.algorithmic.tree.MediumTreeUtils
 import com.sflin.algorithmic.tree.TreeNode
 import com.sflin.algorithmic.ui.adapter.ListAdapter
+import dalvik.system.DexClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.ConcurrentHashMap
 
 
 class MainActivity : AppCompatActivity() {
@@ -44,7 +45,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(com.sflin.algorithmic.R.layout.activity_main)
 
         init()
+        val map = ConcurrentHashMap<String,String>()
+        map.put("1","1")
 
+        startActivity(null)
     }
 
     private fun init() {
@@ -56,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         listData.add("数学")
         listData.add("动态规划")
         listData.add("哈希与映射")
+        listData.add("排序和搜索")
         listData.add("其他")
 
         adapter = ListAdapter(listData)
@@ -67,6 +72,8 @@ class MainActivity : AppCompatActivity() {
         })
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
+        list.invalidate()
+
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -95,6 +102,9 @@ class MainActivity : AppCompatActivity() {
             }
             "哈希与映射" ->{
                 hash()
+            }
+            "排序和搜索" ->{
+                sortAndSearch()
             }
             "其他" ->{
                 other()
@@ -156,7 +166,7 @@ class MainActivity : AppCompatActivity() {
 
         MediumArrayUtils.search(intArrayOf(4,5,6,7,0,1,2),0)
         MediumArrayUtils.permuteUnique(intArrayOf(1,1,2))
-        HardArrayUtils.jump(intArrayOf(10,9,8,7,6,5,4,3,2,1,1,0))
+//        HardArrayUtils.jump(intArrayOf(10,9,8,7,6,5,4,3,2,1,1,0))
         MediumArrayUtils.stoneGame(intArrayOf(5,3,4,5))
         MediumArrayUtils.sumSubarrayMins(intArrayOf(3,1,2,4))
 
@@ -184,18 +194,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun linkedList() {
-        val listNode = ListNode(1)
+        val listNode = ListNode(4)
         listNode.next = ListNode(2)
         listNode.next.next = ListNode(1)
-        listNode.next.next.next = ListNode(2)
-        listNode.next.next.next.next = ListNode(1)
+        listNode.next.next.next = ListNode(3)
 
 //        val listNode2 = ListNode(1)
 //        listNode2.next = ListNode(3)
 //        listNode2.next.next = ListNode(5)
 //        EasyLinkedListUtils.mergeTwoLists(listNode, listNode2)
 //        EasyLinkedListUtils.hasCycle(listNode)
-//        MediumLinkedListUtils.sortList(listNode)
+        MediumLinkedListUtils.sortList(listNode)
 //        val node = Node()
 //        node.`val` = 1
 //        node.next = Node().apply {
@@ -244,6 +253,10 @@ class MainActivity : AppCompatActivity() {
         HardDynamicProgrammingUtils.longestConsecutive(intArrayOf(0,-1))
         MediumDynamicProgrammingUtils.lengthOfLIS(intArrayOf(5,9,6,5,7,4,8,2))
         MediumDynamicProgrammingUtils.coinChange(intArrayOf(186,419,83,408),6249)
+    }
+
+    private fun sortAndSearch() {
+        MediumSortAndSearchUtils.minMutation("AAAAACCC","AACCCCCC", arrayOf("AAAACCCC","AAACCCCC","AACCCCCC"))
     }
 
     private fun other() {

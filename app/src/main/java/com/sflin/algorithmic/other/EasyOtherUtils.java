@@ -320,9 +320,7 @@ public class EasyOtherUtils {
      *
      * @param n
      * @param m
-     * @return
-     *
-     * 示例
+     * @return 示例
      * 输入: n = 5, m = 3
      * 输出: 3
      */
@@ -333,5 +331,60 @@ public class EasyOtherUtils {
             ans = (ans + m) % i;
         }
         return ans;
+    }
+
+    /**
+     * 231. 2的幂
+     *
+     * @param n
+     * @return 示例
+     * <p>
+     * 输入: 1
+     * 输出: true
+     * 解释: 20 = 1
+     */
+    public boolean isPowerOfTwo(int n) {
+        if (n == 0)
+            return false;
+        while (n % 2 == 0) {
+            n /= 2;
+        }
+        return n == 1;
+    }
+
+    /**
+     * 1122. 数组的相对排序
+     *
+     * @param arr1
+     * @param arr2
+     * @return
+     *
+     * 示例
+     *
+     * 输入：arr1 = [2,3,1,3,2,4,6,7,9,2,19], arr2 = [2,1,4,3,9,6]
+     * 输出：[2,2,2,1,4,3,3,9,6,7,19]
+     *
+     */
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        int[] temp = new int[1001];
+        for (int i : arr1) {
+            temp[i]++;
+        }
+        int index=0;
+        for (int j : arr2) {
+            while (temp[j] >0) {
+                arr1[index] = j;
+                temp[j]--;
+                index++;
+            }
+        }
+        for (int i=0; i<temp.length; i++) {
+            while (temp[i] >0) {
+                arr1[index] = i;
+                temp[i]--;
+                index++;
+            }
+        }
+        return arr1;
     }
 }

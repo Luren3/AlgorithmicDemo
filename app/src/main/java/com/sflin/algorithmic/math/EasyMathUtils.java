@@ -2,6 +2,7 @@ package com.sflin.algorithmic.math;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by MagicFrost
@@ -192,6 +193,8 @@ public class EasyMathUtils {
                     break;
             }
         }
+
+        new ConcurrentHashMap<String,String>();
         return num;
     }
 }

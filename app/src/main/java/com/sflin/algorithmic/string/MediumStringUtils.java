@@ -449,42 +449,41 @@ public class MediumStringUtils {
 
     }
 //    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-//        if (!wordList.contains(endWord))
-//            return 0;
-//
-//        Set<String> visited = new HashSet<>();
+//        if (wordList == null || !wordList.contains(endWord)) return 0;
+//        boolean[] visited = new boolean[wordList.size()];
 //        Queue<String> queue = new LinkedList<>();
 //        queue.add(beginWord);
-//
+//        //深度
 //        int res = 0;
 //        while (!queue.isEmpty()) {
+//            int size = queue.size();
 //            res++;
-//            for (int i = 0; i < queue.size(); i++) {
-//                String start = queue.poll();
-//                for (String string : wordList) {
-//                    if (visited.contains(string)) {
+//            for (int i = 0; i < size; i++) {
+//                String poll = queue.poll();
+//                for (int j = 0; j < wordList.size(); j++) {
+//                    //已经访问过的元素跳过,树中不存在重复节点
+//                    if (visited[j]) {
 //                        continue;
 //                    }
-//                    if (!progress(start, string)) {
+//                    //孩子节点只能改变一个字符转换为s,不满足则跳过
+//                    if (!progress(poll, wordList.get(j))) {
 //                        continue;
 //                    }
-//                    if (string.equals(endWord)) {
+//                    //如果节点s等于endWord,接龙完成
+//                    if (wordList.get(j).equals(endWord)) {
 //                        return res + 1;
 //                    }
-//                    visited.add(string);
-//                    queue.offer(string);
+//                    visited[j] = true;
+//                    queue.add(wordList.get(j));
 //                }
 //            }
 //        }
 //        return 0;
 //    }
-//    private boolean progress(String s1, String s2) {
-//        if (s1.length() != s2.length()) {
-//            return false;
-//        }
+//    private boolean progress(String poll, String s) {
 //        int count = 0;
-//        for (int i = 0; i < s1.length(); i++) {
-//            if (s1.charAt(i) != s2.charAt(i)) {
+//        for (int i = 0; i < s.length(); i++) {
+//            if (poll.charAt(i) != s.charAt(i)) {
 //                count++;
 //                if (count > 1) {
 //                    return false;
@@ -493,4 +492,5 @@ public class MediumStringUtils {
 //        }
 //        return count == 1;
 //    }
+
 }

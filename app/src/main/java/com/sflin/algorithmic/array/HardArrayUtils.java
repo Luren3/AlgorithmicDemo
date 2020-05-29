@@ -18,23 +18,37 @@ public class HardArrayUtils {
      * 从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。
      */
     public int jump(int[] nums) {
-        if (nums.length < 2) {
-            return 0;
-        }
-        int cur_max_index = nums[0];//当前可达到的最远位置
-        int pre_max_index = nums[0];//遍历各个位置的过程中可达到的最远距离
-        int min_jump = 1;
-        for (int i = 1; i < nums.length; i++) {
-            if (i > pre_max_index) {//如果i无法再向前，那么在cur_max_index位置之前需要一次跳跃
-                pre_max_index = cur_max_index;
-                min_jump++;
-            }
-            if (i + nums[i] > cur_max_index) {
-                cur_max_index = nums[i] + i;
+        int end = 0;
+        int maxPosition = 0;
+        int steps = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            //找能跳的最远的
+            maxPosition = Math.max(maxPosition, nums[i] + i);
+            if (i == end) { //遇到边界，就更新边界，并且步数加一
+                end = maxPosition;
+                steps++;
             }
         }
-        return min_jump;
+        return steps;
     }
+//    public int jump(int[] nums) {
+//        if (nums.length < 2) {
+//            return 0;
+//        }
+//        int cur_max_index = nums[0];//当前可达到的最远位置
+//        int pre_max_index = nums[0];//遍历各个位置的过程中可达到的最远距离
+//        int min_jump = 1;
+//        for (int i = 1; i < nums.length; i++) {
+//            if (i > pre_max_index) {//如果i无法再向前，那么在cur_max_index位置之前需要一次跳跃
+//                pre_max_index = cur_max_index;
+//                min_jump++;
+//            }
+//            if (i + nums[i] > cur_max_index) {
+//                cur_max_index = nums[i] + i;
+//            }
+//        }
+//        return min_jump;
+//    }
 //    public static int jump(int[] nums) {
 //
 //        if (nums.length <= 1){
